@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,16 +7,20 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
+    
+    body {
+      zoom: 0.85;
+      -moz-transform: scale(0.85);
+      -moz-transform-origin: top center;
+      font-family: 'Inter', sans-serif;
+    }
     @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-30px) rotate(5deg); }
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
     }
-    @keyframes floatSlow {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(20px, -20px) scale(1.05); }
-    }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(30px); }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
     @keyframes fadeIn {
@@ -27,27 +31,88 @@
       from { opacity: 0; transform: scale(0.9); }
       to { opacity: 1; transform: scale(1); }
     }
+    @keyframes glow {
+      0%, 100% { 
+        text-shadow: 0 0 40px rgba(102, 126, 234, 0.6), 
+                     0 0 80px rgba(102, 126, 234, 0.4),
+                     0 0 120px rgba(118, 75, 162, 0.3); 
+      }
+      50% { 
+        text-shadow: 0 0 60px rgba(102, 126, 234, 0.8), 
+                     0 0 100px rgba(102, 126, 234, 0.5),
+                     0 0 140px rgba(118, 75, 162, 0.4); 
+      }
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(2deg); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+    }
     .animate-float { animation: float 8s ease-in-out infinite; }
     .animate-float-slow { animation: floatSlow 10s ease-in-out infinite; }
     .animate-slide-in { animation: slideIn 0.8s ease-out forwards; }
     .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
     .animate-scale-in { animation: scaleIn 0.6s ease-out forwards; }
+    .animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
     .glass-card {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
     .gradient-text {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      animation: gradientShift 4s ease infinite;
+    }
+    .title-accent {
+      position: relative;
+      display: inline-block;
+    }
+    .title-accent::before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent);
+      animation: gradientShift 3s ease infinite;
+      background-size: 200% 100%;
     }
     .skill-card {
       transition: all 0.3s ease;
     }
     .skill-card:hover {
       transform: translateY(-10px) scale(1.05);
+    }
+    .skill-orb {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.25) !important;
+    }
+    .skill-orb:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+      background: rgba(255, 255, 255, 0.35) !important;
+    }
+    .progress-ring {
+      transition: stroke-dashoffset 1.5s ease-out;
+    }
+    .futuristic-line {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent);
+      animation: gradientShift 3s ease infinite;
+      background-size: 200% 100%;
     }
     .progress-bar {
       transition: width 1.5s ease-out;
@@ -78,42 +143,139 @@
       background: linear-gradient(135deg, #667eea, #764ba2);
       box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
     }
+    
+    /* Dark Mode Styles - Futuristic */
+    body.dark-mode {
+      background: linear-gradient(to bottom right, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+    }
+    body.dark-mode .glass-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    body.dark-mode .text-gray-800 {
+      color: #f1f5f9 !important;
+    }
+    body.dark-mode .text-gray-700 {
+      color: #cbd5e1 !important;
+    }
+    body.dark-mode .text-gray-600 {
+      color: #94a3b8 !important;
+    }
+    body.dark-mode .text-gray-500 {
+      color: #64748b !important;
+    }
+    body.dark-mode nav {
+      background: rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    body.dark-mode footer {
+      background: rgba(0, 0, 0, 0.5);
+      border-top: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    body.dark-mode .bg-white/40,
+    body.dark-mode .bg-white/50 {
+      background: rgba(30, 41, 59, 0.6) !important;
+      border: 1px solid rgba(139, 92, 246, 0.1);
+    }
+    body.dark-mode .bg-white/90 {
+      background: rgba(30, 41, 59, 0.9) !important;
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    body.dark-mode .bg-white/20 {
+      background: rgba(30, 41, 59, 0.4) !important;
+    }
+    .theme-toggle {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+    body.dark-mode .theme-toggle {
+      background: rgba(139, 92, 246, 0.3);
+    }
+    body.dark-mode .theme-toggle:hover {
+      background: rgba(139, 92, 246, 0.5);
+    }
   </style>
 </head>
-<body class="bg-gradient-to-br from-purple-100 via-blue-50 to-pink-100 text-gray-800 font-sans antialiased overflow-x-hidden">
+<body class="bg-gradient-to-br from-purple-100 via-blue-50 to-pink-100 text-gray-800 font-sans antialiased overflow-x-hidden dark-mode">
 
   <!-- Navbar -->
   <nav class="fixed top-0 left-0 w-full bg-white/20 backdrop-blur-xl shadow-lg z-50 border-b border-white/30">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <a href="index.html" class="text-2xl font-bold gradient-text">YA</a>
-      <ul class="flex space-x-8">
-        <li><a href="home.html" class="text-gray-700 hover:text-purple-600 transition font-medium">Home</a></li>
-        <li><a href="about.html" class="text-purple-600 font-bold">About</a></li>
-        <li><a href="project.html" class="text-gray-700 hover:text-purple-600 transition font-medium">Projects</a></li>
-        <li><a href="index.html#contact" class="text-gray-700 hover:text-purple-600 transition font-medium">Contact</a></li>
-      </ul>
+      <div class="flex items-center gap-6">
+        <ul class="flex space-x-8">
+          <li><a href="index.html" class="text-gray-700 hover:text-purple-600 transition font-medium">Home</a></li>
+          <li><a href="about.html" class="text-purple-600 font-bold">About</a></li>
+          <li><a href="project.html" class="text-gray-700 hover:text-purple-600 transition font-medium">Projects</a></li>
+          <li><a href="index.html#contact" class="text-gray-700 hover:text-purple-600 transition font-medium">Contact</a></li>
+        </ul>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fas fa-sun text-purple-600 text-lg"></i>
+        </button>
+      </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-    <!-- Floating Decorative Elements -->
-    <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-purple-300 to-pink-300 rounded-full opacity-40 blur-2xl animate-float"></div>
-    <div class="absolute bottom-20 right-20 w-48 h-48 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full opacity-40 blur-2xl animate-float-slow"></div>
-    <div class="absolute top-40 right-32 w-24 h-24 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full opacity-30 blur-xl animate-float" style="animation-delay: 1s;"></div>
+  <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
+    <!-- Enhanced Background -->
+    <div class="absolute inset-0 overflow-hidden">
+      <!-- Multiple gradient orbs with different animations -->
+      <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-purple-400/20 via-pink-400/15 to-transparent rounded-full blur-3xl animate-float"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-blue-400/20 via-cyan-400/15 to-transparent rounded-full blur-3xl" style="animation: floatUp 8s ease-in-out infinite; animation-delay: 1s;"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-300/10 to-blue-300/10 rounded-full blur-3xl" style="animation: pulse 6s ease-in-out infinite;"></div>
+      
+      <!-- Floating particles -->
+      <div class="absolute top-20 left-1/3 w-3 h-3 bg-purple-400/40 rounded-full" style="animation: floatUp 5s ease-in-out infinite;"></div>
+      <div class="absolute bottom-32 right-1/3 w-2 h-2 bg-blue-400/40 rounded-full" style="animation: floatUp 6s ease-in-out infinite; animation-delay: 1s;"></div>
+      <div class="absolute top-1/3 right-1/4 w-2 h-2 bg-pink-400/40 rounded-full" style="animation: floatUp 7s ease-in-out infinite; animation-delay: 2s;"></div>
+    </div>
 
-    <div class="max-w-7xl mx-auto px-6 py-20 z-10">
-      <div class="text-center mb-16 animate-slide-in">
-        <h1 class="text-6xl font-black mb-6">
-          <span class="gradient-text">À Propos de Moi</span>
+    <div class="max-w-7xl mx-auto px-6 z-10  mb-40  relative">
+      <div class="text-center animate-fade-in-up">
+        <!-- Enhanced Badge -->
+        <div class="inline-flex items-center gap-3 mb-10 px-6 py-3 rounded-full bg-gradient-to-r from-white/50 to-white/30 backdrop-blur-xl border border-white/60 shadow-lg hover:shadow-xl transition-all duration-300">
+          <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+          <span class="text-xs font-semibold text-gray-700 tracking-[0.2em] uppercase">Portfolio • About</span>
+          <div class="w-2 h-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+        </div>
+        
+        <!-- Impressive Title -->
+        <h1 class="text-6xl md:text-8xl mb-8 tracking-tight leading-none">
+          <span class="text-gray-800 title-accent" style="font-weight: 200;">About </span>
+          <span class="gradient-text" style="font-weight: 300; animation: glow 3s ease-in-out infinite; letter-spacing: -0.02em;">Me</span>
         </h1>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          Découvrez mon parcours, mes compétences et ma passion pour le développement web
-        </p>
+        
+        <!-- Enhanced Description with decorative elements -->
+        <div class="relative inline-block">
+          <div class="absolute -left-8 top-1/2 transform -translate-y-1/2 w-6 h-0.5 bg-gradient-to-r from-transparent to-purple-400"></div>
+          <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed px-8">
+            Digital developer passionate about creating <span class="gradient-text font-medium">modern</span> web experiences
+          </p>
+          <div class="absolute -right-8 top-1/2 transform -translate-y-1/2 w-6 h-0.5 bg-gradient-to-l from-transparent to-blue-400"></div>
+        </div>
+        
+        <!-- Decorative dots -->
+        <div class="flex items-center justify-center gap-3 mt-10">
+          <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+          <div class="w-12 h-0.5 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400"></div>
+          <div class="w-2 h-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full animate-pulse" style="animation-delay: 0.3s;"></div>
+        </div>
       </div>
 
       <!-- Profile Card -->
-      <div class="glass-card rounded-3xl p-12 shadow-2xl mb-16 animate-fade-in">
+      <div class="glass-card rounded-3xl p-12 shadow-2xl mb-16 mt-40 animate-fade-in">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div class="relative">
             <div class="relative glass-card rounded-3xl p-6 transform hover:scale-105 transition duration-500">
@@ -122,7 +284,7 @@
               <div class="absolute -bottom-6 -right-6 bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-xl animate-float">
                 <div class="text-center">
                   <p class="text-3xl font-bold gradient-text mb-1">2+</p>
-                  <p class="text-sm text-gray-600">Années d'Expérience</p>
+                  <p class="text-sm text-gray-600">Years of Experience</p>
                 </div>
               </div>
             </div>
@@ -131,27 +293,26 @@
           <div class="space-y-6">
             <div class="inline-block">
               <span class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                🎓 Étudiante en Développement Digital
+Digital Developer
               </span>
             </div>
             <h2 class="text-4xl font-bold text-purple-700">Yousra Akajou</h2>
             <p class="text-lg text-gray-700 leading-relaxed">
-              Étudiante passionnée à l'ISMONTIC de Tanger, je suis spécialisée dans le développement web full-stack. 
-              Mon objectif est de créer des solutions numériques innovantes qui allient esthétique et performance.
+              Full Stack Digital Developer graduate, I continue to expand my skills towards new technologies, particularly in mobile development. Passionate about creating modern digital solutions, I combine aesthetics, performance and innovation in each of my projects.
             </p>
             <p class="text-lg text-gray-700 leading-relaxed">
-              Je crois fermement que le code est un art et que chaque projet est une opportunité d'apprendre et de grandir. 
-              J'aime relever des défis techniques et transformer des idées créatives en réalité digitale.
+              I firmly believe that code is an art and that every project is an opportunity to learn and grow. 
+              I love taking on technical challenges and transforming creative ideas into digital reality.
             </p>
             
             <div class="flex gap-4 pt-4">
-              <a href="#" class="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-xl flex items-center justify-center text-white hover:scale-110 transition shadow-lg">
+              <a href="https://www.linkedin.com/in/yousra-akajou-50207a334?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-xl flex items-center justify-center text-white hover:scale-110 transition shadow-lg">
                 <i class="fab fa-linkedin"></i>
               </a>
-              <a href="#" class="w-12 h-12 bg-gradient-to-br from-gray-700 to-gray-900 rounded-xl flex items-center justify-center text-white hover:scale-110 transition shadow-lg">
+              <a href="https://github.com/Yousra-akg/" class="w-12 h-12 bg-gradient-to-br from-gray-700 to-gray-900 rounded-xl flex items-center justify-center text-white hover:scale-110 transition shadow-lg">
                 <i class="fab fa-github"></i>
               </a>
-              <a href="#" class="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-500 rounded-xl flex items-center justify-center text-white hover:scale-110 transition shadow-lg">
+              <a href="https://www.instagram.com/youssy_akg?igsh=ZDVhNmQ5Z3V0bjM%3D&utm_source=qr" class="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-500 rounded-xl flex items-center justify-center text-white hover:scale-110 transition shadow-lg">
                 <i class="fab fa-instagram"></i>
               </a>
             </div>
@@ -159,109 +320,200 @@
         </div>
       </div>
 
-      <!-- Skills Section -->
-      <div class="mb-16 animate-slide-in" style="animation-delay: 0.2s;">
-        <h2 class="text-4xl font-black text-center mb-12 gradient-text">Compétences Techniques</h2>
+      <!-- Skills Section - Modern Circular Design -->
+      <div class="mb-20 animate-slide-in" style="animation-delay: 0.4s;">
+        <div class="text-center mb-16">
+          <div class="futuristic-line w-24 mx-auto mb-6"></div>
+          <h2 class="text-5xl font-black gradient-text mb-4">Technical Skills</h2>
+          <p class="text-gray-600 text-lg">Technologies I master</p>
+        </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          <!-- Frontend -->
-          <div class="glass-card rounded-2xl p-8 skill-card">
-            <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
-              <i class="fab fa-html5 text-white text-3xl"></i>
+        <!-- Circular Grid Layout -->
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <!-- HTML5 -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.2)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-html)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="95" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-html" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#ff8787;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-html5 text-5xl text-orange-400"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">HTML5</h3>
+              <p class="text-3xl font-black gradient-text mb-1">95%</p>
+              <p class="text-sm text-gray-600">Expert</p>
             </div>
-            <h3 class="text-xl font-bold text-center mb-2">HTML5</h3>
-            <div class="w-full bg-white/30 rounded-full h-2 mb-2">
-              <div class="progress-bar bg-gradient-to-r from-orange-400 to-red-500 h-2 rounded-full" style="width: 95%"></div>
-            </div>
-            <p class="text-center text-gray-600 text-sm">Expert</p>
-          </div>
 
-          <div class="glass-card rounded-2xl p-8 skill-card">
-            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
-              <i class="fab fa-css3-alt text-white text-3xl"></i>
+            <!-- CSS3 -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.2)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-css)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="90" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-css" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-css3-alt text-5xl text-blue-400"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">CSS3 / Tailwind</h3>
+              <p class="text-3xl font-black gradient-text mb-1">90%</p>
+              <p class="text-sm text-gray-600">Expert</p>
             </div>
-            <h3 class="text-xl font-bold text-center mb-2">CSS3 / Tailwind</h3>
-            <div class="w-full bg-white/30 rounded-full h-2 mb-2">
-              <div class="progress-bar bg-gradient-to-r from-blue-400 to-blue-600 h-2 rounded-full" style="width: 90%"></div>
-            </div>
-            <p class="text-center text-gray-600 text-sm">Expert</p>
-          </div>
 
-          <div class="glass-card rounded-2xl p-8 skill-card">
-            <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
-              <i class="fab fa-js text-white text-3xl"></i>
+            <!-- JavaScript -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.2)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-js)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="85" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-js" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#f7b733;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#fc4a1a;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-js text-5xl text-yellow-400"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">JavaScript</h3>
+              <p class="text-3xl font-black gradient-text mb-1">85%</p>
+              <p class="text-sm text-gray-600">Advanced</p>
             </div>
-            <h3 class="text-xl font-bold text-center mb-2">JavaScript</h3>
-            <div class="w-full bg-white/30 rounded-full h-2 mb-2">
-              <div class="progress-bar bg-gradient-to-r from-yellow-400 to-yellow-600 h-2 rounded-full" style="width: 85%"></div>
-            </div>
-            <p class="text-center text-gray-600 text-sm">Avancé</p>
-          </div>
 
-          <div class="glass-card rounded-2xl p-8 skill-card">
-            <div class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
-              <i class="fab fa-react text-white text-3xl"></i>
+            <!-- React -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.2)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-react)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="80" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-react" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#61dafb;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#21a1c4;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-react text-5xl text-cyan-400"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">React</h3>
+              <p class="text-3xl font-black gradient-text mb-1">85%</p>
+              <p class="text-sm text-gray-600">Advanced</p>
             </div>
-            <h3 class="text-xl font-bold text-center mb-2">React</h3>
-            <div class="w-full bg-white/30 rounded-full h-2 mb-2">
-              <div class="progress-bar bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 80%"></div>
-            </div>
-            <p class="text-center text-gray-600 text-sm">Avancé</p>
-          </div>
 
-          <div class="glass-card rounded-2xl p-8 skill-card">
-            <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
-              <i class="fab fa-laravel text-white text-3xl"></i>
+            <!-- Laravel -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.2)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-laravel)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="85" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-laravel" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#ff2d20;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#ff5a4e;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-laravel text-5xl text-red-400"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">Laravel</h3>
+              <p class="text-3xl font-black gradient-text mb-1">85%</p>
+              <p class="text-sm text-gray-600">Advanced</p>
             </div>
-            <h3 class="text-xl font-bold text-center mb-2">Laravel</h3>
-            <div class="w-full bg-white/30 rounded-full h-2 mb-2">
-              <div class="progress-bar bg-gradient-to-r from-red-500 to-red-700 h-2 rounded-full" style="width: 85%"></div>
-            </div>
-            <p class="text-center text-gray-600 text-sm">Avancé</p>
-          </div>
 
-          <div class="glass-card rounded-2xl p-8 skill-card">
-            <div class="w-16 h-16 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
-              <i class="fab fa-php text-white text-3xl"></i>
+            <!-- PHP -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.2)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-php)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="80" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-php" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#8993be;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#6f7cb2;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-php text-5xl text-indigo-400"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">PHP</h3>
+              <p class="text-3xl font-black gradient-text mb-1">85%</p>
+              <p class="text-sm text-gray-600">Advanced</p>
             </div>
-            <h3 class="text-xl font-bold text-center mb-2">PHP</h3>
-            <div class="w-full bg-white/30 rounded-full h-2 mb-2">
-              <div class="progress-bar bg-gradient-to-r from-indigo-400 to-indigo-600 h-2 rounded-full" style="width: 80%"></div>
-            </div>
-            <p class="text-center text-gray-600 text-sm">Avancé</p>
-          </div>
 
-          <div class="glass-card rounded-2xl p-8 skill-card">
-            <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
-              <i class="fas fa-database text-white text-3xl"></i>
+            <!-- WordPress -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.2)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-wordpress)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="80" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-wordpress" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#21759b;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#4ea8d4;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-wordpress text-5xl text-blue-500"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">WordPress</h3>
+              <p class="text-3xl font-black gradient-text mb-1">80%</p>
+              <p class="text-sm text-gray-600">Advanced</p>
             </div>
-            <h3 class="text-xl font-bold text-center mb-2">MongoDB</h3>
-            <div class="w-full bg-white/30 rounded-full h-2 mb-2">
-              <div class="progress-bar bg-gradient-to-r from-green-400 to-green-600 h-2 rounded-full" style="width: 75%"></div>
-            </div>
-            <p class="text-center text-gray-600 text-sm">Intermédiaire</p>
-          </div>
 
-          <div class="glass-card rounded-2xl p-8 skill-card">
-            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
-              <i class="fab fa-git-alt text-white text-3xl"></i>
+            <!-- Git -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.2)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-git)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="85" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-git" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#f05032;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#ff6347;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-git-alt text-5xl text-orange-500"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">Git / GitHub</h3>
+              <p class="text-3xl font-black gradient-text mb-1">85%</p>
+              <p class="text-sm text-gray-600">Advanced</p>
             </div>
-            <h3 class="text-xl font-bold text-center mb-2">Git / GitHub</h3>
-            <div class="w-full bg-white/30 rounded-full h-2 mb-2">
-              <div class="progress-bar bg-gradient-to-r from-orange-500 to-red-600 h-2 rounded-full" style="width: 85%"></div>
-            </div>
-            <p class="text-center text-gray-600 text-sm">Avancé</p>
-          </div>
-
-          <div class="glass-card rounded-2xl p-8 skill-card">
-            <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
-              <i class="fas fa-tasks text-white text-3xl"></i>
-            </div>
-            <h3 class="text-xl font-bold text-center mb-2">Scrum / Agile</h3>
-            <div class="w-full bg-white/30 rounded-full h-2 mb-2">
-              <div class="progress-bar bg-gradient-to-r from-purple-400 to-purple-600 h-2 rounded-full" style="width: 80%"></div>
-            </div>
-            <p class="text-center text-gray-600 text-sm">Avancé</p>
           </div>
         </div>
       </div>
@@ -272,7 +524,7 @@
         <div class="glass-card rounded-3xl p-10 shadow-2xl">
           <h2 class="text-3xl font-black mb-8 gradient-text flex items-center gap-3">
             <i class="fas fa-graduation-cap"></i>
-            Formation
+            Education
           </h2>
           
           <div class="space-y-8">
@@ -280,11 +532,11 @@
               <div class="timeline-dot"></div>
               <div class="bg-white/50 backdrop-blur-md rounded-2xl p-6 hover:scale-105 transition">
                 <div class="flex justify-between items-start mb-2">
-                  <h3 class="text-xl font-bold text-purple-700">Développement Digital</h3>
+                  <h3 class="text-xl font-bold text-purple-700">Digital Development</h3>
                   <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold">2023-2025</span>
                 </div>
                 <p class="text-gray-600 font-semibold mb-2">ISMONTIC Tanger</p>
-                <p class="text-gray-600 text-sm">Formation complète en développement web full-stack, incluant les technologies modernes et les méthodologies agiles.</p>
+                <p class="text-gray-600 text-sm">Complete full-stack web development training, including modern technologies and agile methodologies.</p>
               </div>
             </div>
 
@@ -292,11 +544,11 @@
               <div class="timeline-dot"></div>
               <div class="bg-white/50 backdrop-blur-md rounded-2xl p-6 hover:scale-105 transition">
                 <div class="flex justify-between items-start mb-2">
-                  <h3 class="text-xl font-bold text-purple-700">Baccalauréat Sciences</h3>
+                  <h3 class="text-xl font-bold text-purple-700">Science Baccalaureate</h3>
                   <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold">2023</span>
                 </div>
-                <p class="text-gray-600 font-semibold mb-2">Lycée de Tanger</p>
-                <p class="text-gray-600 text-sm">Formation scientifique avec mention, développant une approche analytique et rigoureuse.</p>
+                <p class="text-gray-600 font-semibold mb-2">Ibn Rochd High School Tangier</p>
+                <p class="text-gray-600 text-sm">Scientific education with honors.</p>
               </div>
             </div>
           </div>
@@ -306,7 +558,7 @@
         <div class="glass-card rounded-3xl p-10 shadow-2xl">
           <h2 class="text-3xl font-black mb-8 gradient-text flex items-center gap-3">
             <i class="fas fa-briefcase"></i>
-            Expérience
+            Experience
           </h2>
           
           <div class="space-y-8">
@@ -314,11 +566,10 @@
               <div class="timeline-dot"></div>
               <div class="bg-white/50 backdrop-blur-md rounded-2xl p-6 hover:scale-105 transition">
                 <div class="flex justify-between items-start mb-2">
-                  <h3 class="text-xl font-bold text-purple-700">Développeuse Web</h3>
-                  <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">2024-Présent</span>
+                  <h3 class="text-xl font-bold text-purple-700">Academic Projects</h3>
+                  <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">2023-2025</span>
                 </div>
-                <p class="text-gray-600 font-semibold mb-2">Projets Freelance</p>
-                <p class="text-gray-600 text-sm">Développement de sites web et applications pour divers clients, en utilisant React, Laravel et MongoDB.</p>
+                <p class="text-gray-600 text-sm">Development of several web projects during my studies, including applications with React, Laravel and WordPress.</p>
               </div>
             </div>
 
@@ -326,11 +577,11 @@
               <div class="timeline-dot"></div>
               <div class="bg-white/50 backdrop-blur-md rounded-2xl p-6 hover:scale-105 transition">
                 <div class="flex justify-between items-start mb-2">
-                  <h3 class="text-xl font-bold text-purple-700">Stage Développement</h3>
-                  <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">2024</span>
+                  <h3 class="text-xl font-bold text-purple-700">Web Development Internship</h3>
+                  <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">April 2025</span>
                 </div>
-                <p class="text-gray-600 font-semibold mb-2">Entreprise Tech Tanger</p>
-                <p class="text-gray-600 text-sm">Participation au développement d'applications web en équipe, apprentissage des bonnes pratiques et méthodologies agiles.</p>
+                <p class="text-gray-600 font-semibold mb-2">Ladrissi Com' - Communication Agency</p>
+                <p class="text-gray-600 text-sm">Development of the agency's website: interface design and content integration.</p>
               </div>
             </div>
           </div>
@@ -339,7 +590,7 @@
 
       <!-- Interests & Values -->
       <div class="glass-card rounded-3xl p-12 shadow-2xl animate-scale-in" style="animation-delay: 0.6s;">
-        <h2 class="text-4xl font-black text-center mb-12 gradient-text">Mes Valeurs & Intérêts</h2>
+        <h2 class="text-4xl font-black text-center mb-12 gradient-text">My Values & Interests</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="text-center space-y-4 bg-white/50 backdrop-blur-md rounded-2xl p-8 hover:scale-105 transition">
@@ -347,7 +598,7 @@
               <i class="fas fa-lightbulb text-white text-3xl"></i>
             </div>
             <h3 class="text-xl font-bold text-purple-700">Innovation</h3>
-            <p class="text-gray-600">Toujours à la recherche de nouvelles technologies et approches créatives pour résoudre les problèmes.</p>
+            <p class="text-gray-600">Constant search for new technologies and creative solutions.</p>
           </div>
 
           <div class="text-center space-y-4 bg-white/50 backdrop-blur-md rounded-2xl p-8 hover:scale-105 transition">
@@ -355,7 +606,7 @@
               <i class="fas fa-users text-white text-3xl"></i>
             </div>
             <h3 class="text-xl font-bold text-purple-700">Collaboration</h3>
-            <p class="text-gray-600">Convaincue que le travail d'équipe et le partage de connaissances mènent aux meilleurs résultats.</p>
+            <p class="text-gray-600">Teamwork and sharing lead to the best results.</p>
           </div>
 
           <div class="text-center space-y-4 bg-white/50 backdrop-blur-md rounded-2xl p-8 hover:scale-105 transition">
@@ -363,23 +614,23 @@
               <i class="fas fa-heart text-white text-3xl"></i>
             </div>
             <h3 class="text-xl font-bold text-purple-700">Passion</h3>
-            <p class="text-gray-600">Le développement web n'est pas qu'un métier, c'est une passion qui me pousse à m'améliorer chaque jour.</p>
+            <p class="text-gray-600">A passion that drives me to improve every day.</p>
           </div>
         </div>
       </div>
 
       <!-- CTA Section -->
-      <div class="text-center mt-16 animate-fade-in" style="animation-delay: 0.8s;">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Travaillons Ensemble !</h2>
+      <div class="text-center mt-40 animate-fade-in" style="animation-delay: 0.8s;">
+        <h2 class="text-3xl font-bold mb-6 text-gray-800">Let's Work Together!</h2>
         <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-          Vous avez un projet en tête ? N'hésitez pas à me contacter pour en discuter !
+          Have a project in mind? Feel free to contact me to discuss it!
         </p>
         <div class="flex gap-4 justify-center">
           <a href="index.html#contact" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-2xl transition transform hover:scale-105">
-            Me Contacter
+            Contact Me
           </a>
           <a href="project.html" class="bg-white/40 backdrop-blur-md text-purple-700 px-8 py-4 rounded-full font-bold border-2 border-white/50 hover:bg-white/60 transition">
-            Voir Mes Projets
+            View My Projects
           </a>
         </div>
       </div>
@@ -387,36 +638,70 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-12 bg-white/20 backdrop-blur-md border-t border-white/30 mt-20">
+  <footer class="py-12 bg-white/20 backdrop-blur-md border-t border-white/30 ">
     <div class="max-w-7xl mx-auto px-6 text-center">
-      <p class="text-gray-600 mb-4">© 2025 Yousra Akajou. Tous droits réservés.</p>
+      <p class="text-gray-600 mb-4"> 2025 Yousra Akajou. All rights reserved.</p>
       <div class="flex justify-center gap-4 mb-4">
-        <a href="#" class="text-gray-600 hover:text-purple-600 transition">
+        <a href="https://www.linkedin.com/in/yousra-akajou-50207a334?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="text-gray-600 hover:text-purple-600 transition">
           <i class="fab fa-linkedin text-xl"></i>
         </a>
-        <a href="#" class="text-gray-600 hover:text-purple-600 transition">
+        <a href="https://github.com/Yousra-akg/" class="text-gray-600 hover:text-purple-600 transition">
           <i class="fab fa-github text-xl"></i>
         </a>
-        <a href="#" class="text-gray-600 hover:text-purple-600 transition">
+        <a href="https://www.instagram.com/youssy_akg?igsh=ZDVhNmQ5Z3V0bjM%3D&utm_source=qr" class="text-gray-600 hover:text-purple-600 transition">
           <i class="fab fa-instagram text-xl"></i>
         </a>
       </div>
-      <p class="text-sm text-gray-500">Fait avec <i class="fas fa-heart text-red-500"></i> à Tanger</p>
+      <p class="text-sm text-gray-500">Made with <i class="fas fa-heart text-red-500"></i> in Tangier</p>
     </div>
   </footer>
 
   <script>
-    // Animate progress bars on scroll
-    const progressBars = document.querySelectorAll('.progress-bar');
-    const observer = new IntersectionObserver((entries) => {
+    // Dark Mode Toggle - Default to Dark
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const themeIcon = themeToggle.querySelector('i');
+    
+    // Check for saved theme preference or default to dark mode
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    if (currentTheme === 'dark') {
+      body.classList.add('dark-mode');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+    } else {
+      body.classList.remove('dark-mode');
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+    }
+    
+    themeToggle.addEventListener('click', function() {
+      body.classList.toggle('dark-mode');
+      
+      if (body.classList.contains('dark-mode')) {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Animate circular progress rings on scroll
+    const progressRings = document.querySelectorAll('.progress-ring');
+    const ringObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.style.width = entry.target.style.width;
+          const progress = entry.target.getAttribute('data-progress');
+          const circumference = 2 * Math.PI * 56; // r=56
+          const offset = circumference - (progress / 100) * circumference;
+          entry.target.style.strokeDashoffset = offset;
         }
       });
     }, { threshold: 0.5 });
 
-    progressBars.forEach(bar => observer.observe(bar));
+    progressRings.forEach(ring => ringObserver.observe(ring));
 
     // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

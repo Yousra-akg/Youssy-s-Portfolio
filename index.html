@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Yousra Akajou</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+  zoom: 0.85;
+  -moz-transform: scale(0.85);
+  -moz-transform-origin: top center;
+}
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(5deg); }
+    }
+    @keyframes floatSlow {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(20px, -20px) scale(1.05); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(168, 85, 247, 0.8); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+    .animate-float { animation: float 8s ease-in-out infinite; }
+    .animate-float-slow { animation: floatSlow 10s ease-in-out infinite; }
+    .animate-slide-in { animation: slideIn 0.8s ease-out forwards; }
+    .animate-scroll { animation: scroll 30s linear infinite; }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ribbon-container {
+      overflow: hidden;
+      backdrop-filter: blur(15px);
+      border-top: 2px solid rgba(255, 255, 255, 0.3);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+    }
+    .ribbon-container::before,
+    .ribbon-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 100px;
+      height: 100%;
+      z-index: 2;
+    }
+    .ribbon-container::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(237, 233, 254, 1), transparent);
+    }
+    .ribbon-container::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(237, 233, 254, 1), transparent);
+    }
+    .ribbon-content {
+      display: flex;
+      white-space: nowrap;
+    }
+    .ribbon-item {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 4rem;
+      font-size: 2rem;
+      font-weight: 400;
+      font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .ribbon-icon {
+      margin: 0 1.5rem;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+    }
+    .floating-icon {
+      position: absolute;
+      animation: float 6s ease-in-out infinite;
+    }
+    .social-icon {
+      transition: all 0.3s ease;
+    }
+    .social-icon:hover {
+      transform: scale(1.2) rotate(5deg);
+    }
+    
+    body.dark-mode {
+      background: linear-gradient(to bottom right, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+    }
+    body.dark-mode .glass-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    body.dark-mode .stat-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    body.dark-mode .ribbon-container::before {
+      background: linear-gradient(to right, rgba(15, 23, 42, 1), transparent);
+    }
+    body.dark-mode .ribbon-container::after {
+      background: linear-gradient(to left, rgba(15, 23, 42, 1), transparent);
+    }
+    body.dark-mode .text-gray-800 {
+      color: #f1f5f9 !important;
+    }
+    body.dark-mode .text-gray-700 {
+      color: #cbd5e1 !important;
+    }
+    body.dark-mode .text-gray-600 {
+      color: #94a3b8 !important;
+    }
+    body.dark-mode .text-gray-500 {
+      color: #64748b !important;
+    }
+    body.dark-mode nav {
+      background: rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    body.dark-mode footer {
+      background: rgba(0, 0, 0, 0.5);
+      border-top: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    body.dark-mode .bg-white\/40,
+    body.dark-mode .bg-white\/50 {
+      background: rgba(30, 41, 59, 0.6) !important;
+      border: 1px solid rgba(139, 92, 246, 0.1);
+    }
+    body.dark-mode .bg-white\/90 {
+      background: rgba(30, 41, 59, 0.9) !important;
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    body.dark-mode .bg-white\/20 {
+      background: rgba(30, 41, 59, 0.4) !important;
+    }
+    .theme-toggle {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+    body.dark-mode .theme-toggle {
+      background: rgba(139, 92, 246, 0.3);
+    }
+    body.dark-mode .theme-toggle:hover {
+      background: rgba(139, 92, 246, 0.5);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-purple-100 via-blue-50 to-pink-100 text-gray-800 font-sans antialiased overflow-x-hidden dark-mode">
+
+  <nav class="fixed top-0 left-0 w-full bg-white/20 backdrop-blur-xl shadow-lg z-50 border-b border-white/30">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#home" class="text-2xl font-bold gradient-text">YA</a>
+      <div class="flex items-center gap-6">
+        <ul class="flex space-x-8">
+          <li><a href="#home" class="text-gray-700 hover:text-purple-600 transition font-medium">Home</a></li>
+          <li><a href="about.html" class="text-gray-700 hover:text-purple-600 transition font-medium">About</a></li>
+          <li><a href="project.html" class="text-gray-700 hover:text-purple-600 transition font-medium">Projects</a></li>
+          <li><a href="#contact" class="text-gray-700 hover:text-purple-600 transition font-medium">Contact</a></li>
+        </ul>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fas fa-moon text-purple-600 text-lg"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-40">
+    <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-purple-300 to-pink-300 rounded-full opacity-40 blur-2xl animate-float"></div>
+    <div class="absolute bottom-20 right-20 w-48 h-48 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full opacity-40 blur-2xl animate-float-slow"></div>
+    <div class="absolute top-40 right-32 w-24 h-24 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full opacity-30 blur-xl animate-float" style="animation-delay: 1s;"></div>
+
+    <div class="floating-icon top-32 left-1/4 text-purple-400 text-4xl opacity-20" style="animation-delay: 0.5s;">
+      <i class="fab fa-react"></i>
+    </div>
+    <div class="floating-icon bottom-40 left-1/3 text-blue-400 text-3xl opacity-20" style="animation-delay: 1.5s;">
+      <i class="fab fa-js"></i>
+    </div>
+    <div class="floating-icon top-1/3 right-1/4 text-pink-400 text-3xl opacity-20" style="animation-delay: 2s;">
+      <i class="fab fa-html5"></i>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
+      <div class="text-left space-y-6 animate-slide-in">
+        <div class="inline-block">
+          <span class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+            Full Stack Developer
+          </span>
+        </div>
+        <h1 class="text-6xl font-black leading-tight">
+          <span class="gradient-text">Yousra Akajou</span>
+        </h1>
+        <p class="text-xl text-gray-600 max-w-lg leading-relaxed">
+          Passionate about web development, I design high-performance and intuitive applications, 
+          combining modern design with robust functionality.
+        </p>
+        <div class="flex gap-4">
+          <a href="#projects" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-2xl transition transform hover:scale-105">
+            Get Started
+          </a>
+          <a href="#contact" class="bg-white/40 backdrop-blur-md text-purple-700 px-8 py-4 rounded-full font-bold border-2 border-white/50 hover:bg-white/60 transition">
+            Contact Me
+          </a>
+        </div>
+
+        <div class="flex gap-4 pt-4">
+          <a href="https://www.linkedin.com/in/yousra-akajou-50207a334?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="social-icon w-12 h-12 bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center text-purple-600 hover:bg-purple-500 hover:text-white">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/Yousra-akg/" class="social-icon w-12 h-12 bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-500 hover:text-white">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.instagram.com/youssy_akg?igsh=ZDVhNmQ5Z3V0bjM%3D&utm_source=qr" class="social-icon w-12 h-12 bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center text-pink-600 hover:bg-pink-500 hover:text-white">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="relative animate-slide-in" style="animation-delay: 0.2s;">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-300/50 via-blue-300/50 to-pink-300/50 rounded-full blur-3xl"></div>
+          
+          <div class="relative glass-card rounded-3xl p-8 transform hover:scale-105 transition duration-500">
+            <img src="2.jpg" alt="Yousra Akajou" class="w-full h-auto rounded-2xl shadow-2xl object-cover" style="max-height: 500px;">
+            
+            <div class="absolute -top-6 -left-6 bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-xl animate-float">
+              <div class="flex items-center gap-3">
+                <i class="fas fa-code text-3xl text-purple-500"></i>
+                <div>
+                  <p class="text-xs text-gray-500"></p>
+                  <p class="text-sm font-bold"> Projects</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute -bottom-6 -right-6 bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-xl animate-float" style="animation-delay: 1s;">
+              <div class="text-center">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                  <i class="fas fa-users text-purple-500"></i>
+                  <i class="fas fa-user-circle text-blue-500"></i>
+                  <i class="fas fa-user text-pink-500"></i>
+                  <i class="fas fa-user-tie text-cyan-500"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute top-1/2 -left-8 bg-white/90 backdrop-blur-md rounded-full p-3 shadow-xl animate-float" style="animation-delay: 0.5s;">
+              <i class="fab fa-react text-2xl text-cyan-500"></i>
+            </div>
+
+            <div class="absolute top-1/4 -right-8 bg-white/90 backdrop-blur-md rounded-full p-3 shadow-xl animate-float" style="animation-delay: 1.5s;">
+              <i class="fab fa-laravel text-2xl text-red-500"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 relative">
+    <div class="ribbon-container py-8">
+      <div class="ribbon-content animate-scroll">
+        <span class="ribbon-item">
+          Web Development
+        </span>
+        <span class="ribbon-item">
+          Modern Design
+        </span>
+        <span class="ribbon-item">
+          Dynamic Websites
+        </span>
+        <span class="ribbon-item">
+          Web Development
+        </span>
+        <span class="ribbon-item">
+          Modern Design
+        </span>
+        <span class="ribbon-item">
+          Dynamic Websites
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-5xl font-black text-center mb-16 gradient-text">About Me</h2>
+      <div class="glass-card rounded-3xl p-12 shadow-2xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 class="text-3xl font-bold text-purple-700 mb-6">Passionate About Code</h3>
+            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+            Graduated in digital development from ISMONTIC in Tangier, I put my passion for the web at the service of creating innovative projects. I love transforming ideas into concrete digital experiences, both aesthetic and functional.
+            </p>
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+            My ambition is to design solutions that combine impact, simplicity and value for users.
+            </p>
+            <a href="#contact" class="inline-block bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-2xl transition transform hover:scale-105">
+              Let's Work Together
+            </a>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold text-gray-700 mb-6">Technologies & Skills</h4>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="bg-white/50 backdrop-blur-md rounded-2xl p-4 text-center hover:scale-110 transition">
+                <i class="fab fa-html5 text-4xl text-orange-500 mb-2"></i>
+                <p class="text-sm font-semibold">HTML5</p>
+              </div>
+              <div class="bg-white/50 backdrop-blur-md rounded-2xl p-4 text-center hover:scale-110 transition">
+                <i class="fab fa-css3-alt text-4xl text-blue-500 mb-2"></i>
+                <p class="text-sm font-semibold">CSS3</p>
+              </div>
+              <div class="bg-white/50 backdrop-blur-md rounded-2xl p-4 text-center hover:scale-110 transition">
+                <i class="fab fa-js text-4xl text-yellow-500 mb-2"></i>
+                <p class="text-sm font-semibold">JavaScript</p>
+              </div>
+              <div class="bg-white/50 backdrop-blur-md rounded-2xl p-4 text-center hover:scale-110 transition">
+                <i class="fab fa-react text-4xl text-cyan-500 mb-2"></i>
+                <p class="text-sm font-semibold">React</p>
+              </div>
+              <div class="bg-white/50 backdrop-blur-md rounded-2xl p-4 text-center hover:scale-110 transition">
+                <i class="fab fa-laravel text-4xl text-red-500 mb-2"></i>
+                <p class="text-sm font-semibold">Laravel</p>
+              </div>
+              <div class="bg-white/50 backdrop-blur-md rounded-2xl p-4 text-center hover:scale-110 transition">
+                <i class="fab fa-php text-4xl text-indigo-500 mb-2"></i>
+                <p class="text-sm font-semibold">PHP</p>
+              </div>
+              <div class="bg-white/50 backdrop-blur-md rounded-2xl p-4 text-center hover:scale-110 transition">
+                <i class="fas fa-database text-4xl text-green-500 mb-2"></i>
+                <p class="text-sm font-semibold">MongoDB</p>
+              </div>
+              <div class="bg-white/50 backdrop-blur-md rounded-2xl p-4 text-center hover:scale-110 transition">
+                <i class="fab fa-git-alt text-4xl text-orange-600 mb-2"></i>
+                <p class="text-sm font-semibold">Git</p>
+              </div>
+              <div class="bg-white/50 backdrop-blur-md rounded-2xl p-4 text-center hover:scale-110 transition">
+                <i class="fas fa-tasks text-4xl text-purple-500 mb-2"></i>
+                <p class="text-sm font-semibold">Scrum</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+ 
+  <section id="projects" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-5xl font-black text-center mb-16 gradient-text">My Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass-card rounded-3xl overflow-hidden hover:scale-105 transition duration-500 shadow-2xl group flex flex-col">
+          <div class="relative overflow-hidden">
+            <img src="image3.jpg" alt="Project 1" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
+          </div>
+          <div class="p-8 flex flex-col flex-grow">
+            <h3 class="text-2xl font-bold mb-3 text-purple-700">Car Rental Website</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed flex-grow">Modern interface and reservation management system.</p>
+            <a href="project-details.html" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-full font-bold hover:shadow-lg transition self-start">
+              View Details →
+            </a>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-3xl overflow-hidden hover:scale-105 transition duration-500 shadow-2xl group flex flex-col">
+          <div class="relative overflow-hidden">
+            <img src="prj4.jpg" alt="Project 2" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
+          </div>
+          <div class="p-8 flex flex-col flex-grow">
+            <h3 class="text-2xl font-bold mb-3 text-purple-700">Photography Website</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed flex-grow">Professional website showcasing a photo portfolio with galleries, recent projects, and session booking form.</p>
+            <a href="project2-details.html" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-full font-bold hover:shadow-lg transition self-start">
+              View Details →
+            </a>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-3xl overflow-hidden hover:scale-105 transition duration-500 shadow-2xl group flex flex-col">
+          <div class="relative overflow-hidden">
+            <img src="image2.png" alt="Project 3" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
+          </div>
+          <div class="p-8 flex flex-col flex-grow">
+            <h3 class="text-2xl font-bold mb-3 text-purple-700">Travel Planning Website</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed flex-grow">Travel platform allowing you to book and plan a personalized itinerary.</p>
+            <a href="project3-details.html" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-full font-bold hover:shadow-lg transition self-start">
+              View Details →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-5xl font-black text-center mb-16 gradient-text">Contact Me</h2>
+      <div class="glass-card rounded-3xl p-12 shadow-2xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Contact Form -->
+          <div>
+            <h3 class="text-2xl font-bold text-purple-700 mb-6">Send Me a Message</h3>
+            
+            <!-- Success Message (hidden by default) -->
+            <div id="successMessage" class="hidden bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-400 rounded-3xl p-8 text-center space-y-4 animate-slide-in">
+              <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto">
+                <i class="fas fa-check text-white text-4xl"></i>
+              </div>
+              <h4 class="text-2xl font-bold text-green-700">Message sent successfully!</h4>
+              <p class="text-gray-700">Thank you for your message. I will reply to you as soon as possible.</p>
+              <button onclick="resetForm()" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-full font-bold hover:shadow-lg transition transform hover:scale-105">
+                Send Another Message
+              </button>
+            </div>
+
+            <!-- Contact Form -->
+            <form id="contactForm" action="https://formspree.io/f/xnngoadj" method="POST" class="space-y-6">
+              <div>
+                <input type="text" name="name" placeholder="Your Name" required class="w-full bg-white/50 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+              </div>
+              <div>
+                <input type="email" name="email" placeholder="Your Email" required class="w-full bg-white/50 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+              </div>
+              <div>
+                <textarea name="message" placeholder="Your Message" rows="5" required class="w-full bg-white/50 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 transition resize-none"></textarea>
+              </div>
+              <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-2xl transition transform hover:scale-105">
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="space-y-8">
+            <h3 class="text-2xl font-bold text-purple-700 mb-6">Contact Information</h3>
+            
+            <!-- Email -->
+            <div class="flex items-start gap-6 bg-white/50 backdrop-blur-md rounded-2xl p-6 hover:scale-105 transition">
+              <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                <i class="fas fa-envelope text-white text-2xl"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 mb-1">Email</h4>
+                <p class="text-gray-600">akagouyoussra@gmail.com</p>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="flex items-start gap-6 bg-white/50 backdrop-blur-md rounded-2xl p-6 hover:scale-105 transition">
+              <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                <i class="fas fa-phone text-white text-2xl"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 mb-1">Phone</h4>
+                <p class="text-gray-600">+212 7 70 75 20 23</p>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="flex items-start gap-6 bg-white/50 backdrop-blur-md rounded-2xl p-6 hover:scale-105 transition">
+              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 mb-1">Address</h4>
+                <p class="text-gray-600">Tangier Morocco</p>
+              </div>
+            </div>
+
+            <!-- Social Links -->
+          <div class="bg-white/50 backdrop-blur-md rounded-2xl p-6">
+            <h4 class="font-bold text-gray-800 mb-4">Follow Me</h4>
+            <div class="flex gap-4">
+              <a href="https://www.linkedin.com/in/yousra-akajou-50207a334?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-xl flex items-center justify-center text-white hover:scale-110 transition shadow-lg">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="https://github.com/Yousra-akg/" class="w-12 h-12 bg-gradient-to-br from-gray-700 to-gray-900 rounded-xl flex items-center justify-center text-white hover:scale-110 transition shadow-lg">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.instagram.com/youssy_akg?igsh=ZDVhNmQ5Z3V0bjM%3D&utm_source=qr" class="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-500 rounded-xl flex items-center justify-center text-white hover:scale-110 transition shadow-lg">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="py-12 bg-white/20 backdrop-blur-md border-t border-white/30 mt-20">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="text-gray-600 mb-4"> 2025 Yousra Akajou. All rights reserved.</p>
+      <div class="flex justify-center gap-4 mb-4">
+        <a href="https://www.linkedin.com/in/yousra-akajou-50207a334?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="text-gray-600 hover:text-purple-600 transition">
+          <i class="fab fa-linkedin text-xl"></i>
+        </a>
+        <a href="https://github.com/Yousra-akg/" class="text-gray-600 hover:text-purple-600 transition">
+          <i class="fab fa-github text-xl"></i>
+        </a>
+        <a href="https://www.instagram.com/youssy_akg?igsh=ZDVhNmQ5Z3V0bjM%3D&utm_source=qr" class="text-gray-600 hover:text-purple-600 transition">
+          <i class="fab fa-instagram text-xl"></i>
+        </a>
+      </div>
+      <p class="text-sm text-gray-500">Made with <i class="fas fa-heart text-red-500"></i> in Tangier</p>
+    </div>
+  </footer>
+
+  <script>
+    // Dark Mode Toggle - Default to Dark
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const themeIcon = themeToggle.querySelector('i');
+    
+    // Check for saved theme preference or default to dark mode
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    if (currentTheme === 'dark') {
+      body.classList.add('dark-mode');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+    } else {
+      body.classList.remove('dark-mode');
+    }
+    
+    themeToggle.addEventListener('click', function() {
+      body.classList.toggle('dark-mode');
+      
+      if (body.classList.contains('dark-mode')) {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Contact form management
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Send form via fetch
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          // Hide form and show success message
+          form.classList.add('hidden');
+          successMessage.classList.remove('hidden');
+          form.reset();
+        } else {
+          alert('An error occurred. Please try again.');
+        }
+      }).catch(error => {
+        alert('Une erreur est survenue. Veuillez réessayer.');
+      });
+    });
+
+    // Function to reset the form
+    function resetForm() {
+      form.classList.remove('hidden');
+      successMessage.classList.add('hidden');
+    }
+  </script>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Yousra Akajou</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      zoom: 0.85;
+      -moz-transform: scale(0.85);
+      -moz-transform-origin: top center;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes floatSlow {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(15px, -15px); }
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+    
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.6); }
+    }
+    
+    @keyframes progressFill {
+      from { width: 0%; }
+    }
+    
+    .animate-float { animation: float 8s ease-in-out infinite; }
+    .animate-float-slow { animation: floatSlow 10s ease-in-out infinite; }
+    .animate-slide-in { animation: slideIn 0.8s ease-out forwards; }
+    .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
+    .animate-scale-in { animation: scaleIn 0.6s ease-out forwards; }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .futuristic-line {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #667eea, transparent);
+      animation: shimmer 3s infinite;
+      background-size: 1000px 100%;
+    }
+    
+    .skill-orb {
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .skill-orb:hover {
+      transform: translateY(-15px) scale(1.08);
+    }
+    
+    .skill-orb::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.4), rgba(118, 75, 162, 0.4));
+      opacity: 0;
+      transition: opacity 0.5s;
+      z-index: -1;
+      animation: glow 3s infinite;
+    }
+    
+    .skill-orb:hover::before {
+      opacity: 1;
+    }
+    
+    .progress-ring {
+      transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .timeline-item {
+      position: relative;
+      padding-left: 40px;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: -30px;
+      width: 2px;
+      background: linear-gradient(to bottom, #667eea, #764ba2);
+    }
+    
+    .timeline-item:last-child::before {
+      bottom: 0;
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      left: -8px;
+      top: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    }
+    
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white font-sans antialiased overflow-x-hidden">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full bg-black/20 backdrop-blur-xl shadow-lg z-50 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold gradient-text">YA</a>
+      <ul class="flex space-x-8">
+        <li><a href="index.html" class="text-gray-300 hover:text-purple-400 transition font-medium">Home</a></li>
+        <li><a href="about.html" class="text-purple-400 font-bold">About</a></li>
+        <li><a href="project.html" class="text-gray-300 hover:text-purple-400 transition font-medium">Projects</a></li>
+        <li><a href="index.html#contact" class="text-gray-300 hover:text-purple-400 transition font-medium">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section - Futuristic -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <!-- Animated Background Grid -->
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(102,126,234,0.1),transparent_50%)]"></div>
+      <div class="absolute inset-0" style="background-image: linear-gradient(rgba(102,126,234,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(102,126,234,0.03) 1px, transparent 1px); background-size: 50px 50px;"></div>
+      
+      <!-- Floating Orbs -->
+      <div class="absolute top-20 left-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-float"></div>
+      <div class="absolute bottom-20 right-20 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-3xl animate-float-slow"></div>
+      <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-pink-500/10 rounded-full blur-2xl animate-float" style="animation-delay: 1.5s;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-20 z-10 relative">
+      <!-- Hero Content -->
+      <div class="text-center mb-20 animate-slide-in">
+        <div class="futuristic-line w-32 mx-auto mb-8"></div>
+        
+        <h1 class="hero-title mb-8">
+          <span class="gradient-text block">À Propos</span>
+          <span class="text-white/90 block mt-2">de Moi</span>
+        </h1>
+        
+        <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-light">
+          Développeuse digitale passionnée par la création
+          <br />
+          <span class="text-purple-400 font-medium">d'expériences numériques innovantes</span>
+        </p>
+        
+        <div class="futuristic-line w-32 mx-auto mt-8"></div>
+      </div>
+
+      <!-- Profile Card -->
+      <div class="glass-card rounded-3xl p-12 shadow-2xl mb-20 animate-fade-in" style="animation-delay: 0.2s;">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="relative">
+            <div class="relative glass-card rounded-3xl p-6 transform hover:scale-105 transition duration-500">
+              <img src="2.jpg" alt="Yousra Akajou" class="w-full h-auto rounded-2xl shadow-2xl object-cover" style="max-height: 450px;">
+              
+              <div class="absolute -bottom-6 -right-6 glass-card rounded-2xl p-6 shadow-xl animate-float">
+                <div class="text-center">
+                  <p class="text-4xl font-black gradient-text mb-1">2+</p>
+                  <p class="text-sm text-gray-400">Années d'Expérience</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="inline-block">
+              <span class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-lg">
+                Développeuse digitale
+              </span>
+            </div>
+            <h2 class="text-5xl font-black gradient-text">Yousra Akajou</h2>
+            <p class="text-lg text-gray-300 leading-relaxed font-light">
+              Développeuse digitale diplômée en Full Stack, je continue à élargir mes compétences vers de nouvelles technologies, notamment celles du développement mobile. Passionnée par la création de solutions numériques modernes, j'allie esthétique, performance et innovation dans chacun de mes projets.
+            </p>
+            <p class="text-lg text-gray-300 leading-relaxed font-light">
+              Je crois fermement que le code est un art et que chaque projet est une opportunité d'apprendre et de grandir. 
+              J'aime relever des défis techniques et transformer des idées créatives en réalité digitale.
+            </p>
+            
+            <div class="flex gap-4 pt-4">
+              <a href="https://www.linkedin.com/in/yousra-akajou-50207a334?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="w-14 h-14 glass-card rounded-xl flex items-center justify-center text-white hover:scale-110 transition shadow-lg hover:bg-purple-500/20">
+                <i class="fab fa-linkedin text-xl"></i>
+              </a>
+              <a href="https://github.com/Yousra-akg/" class="w-14 h-14 glass-card rounded-xl flex items-center justify-center text-white hover:scale-110 transition shadow-lg hover:bg-purple-500/20">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+              <a href="https://www.instagram.com/youssy_akg?igsh=ZDVhNmQ5Z3V0bjM%3D&utm_source=qr" class="w-14 h-14 glass-card rounded-xl flex items-center justify-center text-white hover:scale-110 transition shadow-lg hover:bg-purple-500/20">
+                <i class="fab fa-instagram text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills Section - Modern Circular Design -->
+      <div class="mb-20 animate-slide-in" style="animation-delay: 0.4s;">
+        <div class="text-center mb-16">
+          <div class="futuristic-line w-24 mx-auto mb-6"></div>
+          <h2 class="text-5xl font-black gradient-text mb-4">Compétences Techniques</h2>
+          <p class="text-gray-400 text-lg">Technologies que je maîtrise</p>
+        </div>
+        
+        <!-- Circular Grid Layout -->
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <!-- HTML5 -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.1)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-html)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="95" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-html" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#ff8787;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-html5 text-5xl text-orange-400"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">HTML5</h3>
+              <p class="text-3xl font-black gradient-text mb-1">95%</p>
+              <p class="text-sm text-gray-400">Expert</p>
+            </div>
+
+            <!-- CSS3 -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.1)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-css)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="90" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-css" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-css3-alt text-5xl text-blue-400"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">CSS3</h3>
+              <p class="text-3xl font-black gradient-text mb-1">90%</p>
+              <p class="text-sm text-gray-400">Expert</p>
+            </div>
+
+            <!-- JavaScript -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.1)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-js)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="85" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-js" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#f7b733;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#fc4a1a;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-js text-5xl text-yellow-400"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">JavaScript</h3>
+              <p class="text-3xl font-black gradient-text mb-1">85%</p>
+              <p class="text-sm text-gray-400">Avancé</p>
+            </div>
+
+            <!-- React -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.1)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-react)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="80" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-react" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#61dafb;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#21a1c4;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-react text-5xl text-cyan-400"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">React</h3>
+              <p class="text-3xl font-black gradient-text mb-1">80%</p>
+              <p class="text-sm text-gray-400">Avancé</p>
+            </div>
+
+            <!-- Laravel -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.1)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-laravel)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="85" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-laravel" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#ff2d20;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#ff5a4e;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-laravel text-5xl text-red-400"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">Laravel</h3>
+              <p class="text-3xl font-black gradient-text mb-1">85%</p>
+              <p class="text-sm text-gray-400">Avancé</p>
+            </div>
+
+            <!-- PHP -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.1)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-php)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="80" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-php" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#8993be;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#6f7cb2;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-php text-5xl text-indigo-400"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">PHP</h3>
+              <p class="text-3xl font-black gradient-text mb-1">80%</p>
+              <p class="text-sm text-gray-400">Avancé</p>
+            </div>
+
+            <!-- MongoDB -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.1)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-mongo)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="75" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-mongo" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#47a248;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#5dd879;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fas fa-database text-5xl text-green-400"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">MongoDB</h3>
+              <p class="text-3xl font-black gradient-text mb-1">75%</p>
+              <p class="text-sm text-gray-400">Intermédiaire</p>
+            </div>
+
+            <!-- Git -->
+            <div class="skill-orb glass-card rounded-3xl p-8 text-center">
+              <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="transform -rotate-90 w-32 h-32">
+                  <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.1)" stroke-width="8" fill="none" />
+                  <circle class="progress-ring" cx="64" cy="64" r="56" stroke="url(#gradient-git)" stroke-width="8" fill="none" 
+                    stroke-dasharray="352" stroke-dashoffset="352" data-progress="85" stroke-linecap="round" />
+                  <defs>
+                    <linearGradient id="gradient-git" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#f05032;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#ff6347;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <i class="fab fa-git-alt text-5xl text-orange-500"></i>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-2">Git</h3>
+              <p class="text-3xl font-black gradient-text mb-1">85%</p>
+              <p class="text-sm text-gray-400">Avancé</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education & Experience Timeline -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 animate-slide-in" style="animation-delay: 0.6s;">
+        <!-- Education -->
+        <div class="glass-card rounded-3xl p-10 shadow-2xl">
+          <h2 class="text-3xl font-black mb-8 gradient-text flex items-center gap-3">
+            <i class="fas fa-graduation-cap"></i>
+            Formation
+          </h2>
+          
+          <div class="space-y-8">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="glass-card rounded-2xl p-6 hover:scale-105 transition">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-xl font-bold text-purple-400">Développement Digital</h3>
+                  <span class="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-xs font-semibold">2023-2025</span>
+                </div>
+                <p class="text-gray-300 font-semibold mb-2">ISMONTIC Tanger</p>
+                <p class="text-gray-400 text-sm">Formation complète en développement web full-stack, incluant les technologies modernes et les méthodologies agiles.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="glass-card rounded-2xl p-6 hover:scale-105 transition">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-xl font-bold text-purple-400">Baccalauréat Sciences</h3>
+                  <span class="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-xs font-semibold">2023</span>
+                </div>
+                <p class="text-gray-300 font-semibold mb-2">Lycée de Tanger</p>
+                <p class="text-gray-400 text-sm">Formation scientifique avec mention, développant une approche analytique et rigoureuse.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="glass-card rounded-3xl p-10 shadow-2xl">
+          <h2 class="text-3xl font-black mb-8 gradient-text flex items-center gap-3">
+            <i class="fas fa-briefcase"></i>
+            Expérience
+          </h2>
+          
+          <div class="space-y-8">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="glass-card rounded-2xl p-6 hover:scale-105 transition">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-xl font-bold text-purple-400">Développeuse Web</h3>
+                  <span class="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-xs font-semibold">2024-Présent</span>
+                </div>
+                <p class="text-gray-300 font-semibold mb-2">Projets

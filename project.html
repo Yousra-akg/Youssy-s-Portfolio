@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +7,14 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
+    
+    body {
+      zoom: 0.85;
+      -moz-transform: scale(0.85);
+      -moz-transform-origin: top center;
+      font-family: 'Inter', sans-serif;
+    }
     @keyframes float {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-30px) rotate(5deg); }
@@ -100,6 +108,79 @@
       border-radius: 9999px;
       font-weight: 600;
     }
+    
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background: linear-gradient(to bottom right, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+    }
+    body.dark-mode .glass-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    body.dark-mode .text-gray-800 {
+      color: #f1f5f9 !important;
+    }
+    body.dark-mode .text-gray-700 {
+      color: #cbd5e1 !important;
+    }
+    body.dark-mode .text-gray-600 {
+      color: #94a3b8 !important;
+    }
+    body.dark-mode nav {
+      background: rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    body.dark-mode footer {
+      background: rgba(0, 0, 0, 0.5);
+      border-top: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    body.dark-mode .bg-white\/40,
+    body.dark-mode .bg-white\/50 {
+      background: rgba(30, 41, 59, 0.6) !important;
+      border: 1px solid rgba(139, 92, 246, 0.1);
+    }
+    body.dark-mode .bg-white\/60 {
+      background: rgba(30, 41, 59, 0.7) !important;
+    }
+    body.dark-mode .bg-white\/20 {
+      background: rgba(30, 41, 59, 0.4) !important;
+    }
+    body.dark-mode .project-card {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    body.dark-mode .filter-btn {
+      background: rgba(30, 41, 59, 0.6) !important;
+      color: #cbd5e1 !important;
+      border-color: rgba(139, 92, 246, 0.3) !important;
+    }
+    body.dark-mode .filter-btn.active {
+      background: linear-gradient(135deg, #667eea, #764ba2) !important;
+      color: white !important;
+    }
+    body.dark-mode .bg-gradient-to-br {
+      background: rgba(15, 23, 42, 0.4) !important;
+    }
+    .theme-toggle {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+    body.dark-mode .theme-toggle {
+      background: rgba(139, 92, 246, 0.3);
+    }
+    body.dark-mode .theme-toggle:hover {
+      background: rgba(139, 92, 246, 0.5);
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-purple-100 via-blue-50 to-pink-100 text-gray-800 font-sans antialiased overflow-x-hidden">
@@ -108,43 +189,68 @@
   <nav class="fixed top-0 left-0 w-full bg-white/20 backdrop-blur-xl shadow-lg z-50 border-b border-white/30">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <a href="index.html" class="text-2xl font-bold gradient-text">YA</a>
-      <ul class="flex space-x-8">
-        <li><a href="home.html" class="text-gray-700 hover:text-purple-600 transition font-medium">Home</a></li>
-        <li><a href="about.html" class="text-gray-700 hover:text-purple-600 transition font-medium">About</a></li>
-        <li><a href="project.html" class="text-purple-600 font-bold">Projects</a></li>
-        <li><a href="home.html#contact" class="text-gray-700 hover:text-purple-600 transition font-medium">Contact</a></li>
-      </ul>
+      <div class="flex items-center gap-8">
+        <ul class="flex space-x-8">
+          <li><a href="index.html" class="text-gray-700 hover:text-purple-600 transition font-medium">Home</a></li>
+          <li><a href="about.html" class="text-gray-700 hover:text-purple-600 transition font-medium">About</a></li>
+          <li><a href="project.html" class="text-purple-600 font-bold">Projects</a></li>
+          <li><a href="index.html#contact" class="text-gray-700 hover:text-purple-600 transition font-medium">Contact</a></li>
+        </ul>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fas fa-moon text-purple-600 text-lg"></i>
+        </button>
+      </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <section class="relative pt-32 pb-20 overflow-hidden">
-    <!-- Floating Decorative Elements -->
-    <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-purple-300 to-pink-300 rounded-full opacity-40 blur-2xl animate-float"></div>
-    <div class="absolute bottom-20 right-20 w-48 h-48 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full opacity-40 blur-2xl animate-float-slow"></div>
+    <!-- Enhanced Background -->
+    <div class="absolute inset-0 overflow-hidden">
+      <!-- Multiple gradient orbs with different animations -->
+      <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-purple-400/20 via-pink-400/15 to-transparent rounded-full blur-3xl animate-float"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-blue-400/20 via-cyan-400/15 to-transparent rounded-full blur-3xl" style="animation: floatUp 8s ease-in-out infinite; animation-delay: 1s;"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-300/10 to-blue-300/10 rounded-full blur-3xl" style="animation: pulse 6s ease-in-out infinite;"></div>
+      
+      <!-- Floating particles -->
+      <div class="absolute top-20 left-1/3 w-3 h-3 bg-purple-400/40 rounded-full" style="animation: floatUp 5s ease-in-out infinite;"></div>
+      <div class="absolute bottom-32 right-1/3 w-2 h-2 bg-blue-400/40 rounded-full" style="animation: floatUp 6s ease-in-out infinite; animation-delay: 1s;"></div>
+      <div class="absolute top-1/3 right-1/4 w-2 h-2 bg-pink-400/40 rounded-full" style="animation: floatUp 7s ease-in-out infinite; animation-delay: 2s;"></div>
+    </div>
 
     <div class="max-w-7xl mx-auto px-6 z-10 relative">
       <div class="text-center mb-16 animate-slide-in">
-        <div class="inline-block mb-6">
-          <span class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-            💼 Portfolio de Projets
-          </span>
+        <div class="inline-flex items-center gap-3 mb-10 px-6 py-3 rounded-full bg-gradient-to-r from-white/50 to-white/30 backdrop-blur-xl border border-white/60 shadow-lg hover:shadow-xl transition-all duration-300">
+          <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+          <span class="text-xs font-semibold text-gray-700 tracking-[0.2em] uppercase">💼 Portfolio • Projects</span>
+          <div class="w-2 h-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
         </div>
-        <h1 class="text-6xl font-black mb-6">
-          <span class="gradient-text">Mes Réalisations</span>
+        <h1 class="text-6xl md:text-8xl mb-8 tracking-tight leading-none">
+          <span class="text-gray-800 title-accent" style="font-weight: 200;">My </span>
+          <span class="gradient-text" style="font-weight: 300; animation: glow 3s ease-in-out infinite; letter-spacing: -0.02em;">Projects</span>
         </h1>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          Découvrez mes projets de développement web, des applications modernes aux sites innovants
-        </p>
+        
+        <!-- Enhanced Description with decorative elements -->
+        <div class="relative inline-block">
+          <div class="absolute -left-8 top-1/2 transform -translate-y-1/2 w-6 h-0.5 bg-gradient-to-r from-transparent to-purple-400"></div>
+          <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed px-8">
+            Discover my web development projects, from <span class="gradient-text font-medium">modern</span> applications to innovative websites
+          </p>
+          <div class="absolute -right-8 top-1/2 transform -translate-y-1/2 w-6 h-0.5 bg-gradient-to-l from-transparent to-blue-400"></div>
+        </div>
+        
+        <!-- Decorative dots -->
+        <div class="flex items-center justify-center gap-3 mt-10">
+          <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+          <div class="w-12 h-0.5 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400"></div>
+          <div class="w-2 h-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full animate-pulse" style="animation-delay: 0.3s;"></div>
+        </div>
       </div>
 
       <!-- Filter Buttons -->
-      <div class="flex flex-wrap justify-center gap-4 mb-16 animate-fade-in">
+      <div class="flex flex-wrap justify-center gap-4 mb-64 animate-fade-in">
         <button class="filter-btn active bg-white/40 backdrop-blur-md px-6 py-3 rounded-full font-semibold border-2 border-white/50" data-filter="all">
-          Tous les projets
-        </button>
-        <button class="filter-btn bg-white/40 backdrop-blur-md px-6 py-3 rounded-full font-semibold border-2 border-white/50" data-filter="web">
-          Sites Web
+          All Projects
         </button>
         <button class="filter-btn bg-white/40 backdrop-blur-md px-6 py-3 rounded-full font-semibold border-2 border-white/50" data-filter="app">
           Applications
@@ -154,311 +260,191 @@
         </button>
       </div>
 
-      <!-- Projects Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+      <!-- Projects Grid - Staggered Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-32" id="projectsGrid" style="grid-auto-rows: auto;">
         
-        <!-- Project 1 -->
-        <div class="project-card glass-card rounded-3xl overflow-hidden shadow-2xl" data-category="fullstack web">
+        <!-- Left column -->
+        <div class="flex flex-col gap-8">
+        
+        <!-- Project 1 (left) -->
+        
+        <div class="project-card glass-card rounded-3xl overflow-hidden shadow-2xl" data-category="">
           <div class="project-image-container">
-            <img src="image3.jpg" alt="Site de Location de Voitures" class="project-image w-full h-full object-cover">
+            <img src="image3.jpg" alt="Car Rental Website" class="project-image w-full h-full object-cover">
             <div class="project-overlay">
               <div class="text-white">
-                <h3 class="text-2xl font-bold mb-2">Location Auto</h3>
-                <p class="text-sm opacity-90">Application complète de réservation</p>
+                <h3 class="text-2xl font-bold mb-2">BOXCARS</h3>
+                <p class="text-sm opacity-90">Complete booking application</p>
               </div>
             </div>
           </div>
           <div class="p-6 relative z-10">
-            <h3 class="text-xl font-bold mb-3 text-purple-700">Site de Location de Voitures</h3>
+            <h3 class="text-xl font-bold mb-3 text-purple-700">Car Rental Website</h3>
             <p class="text-gray-600 mb-4 text-sm leading-relaxed">
-              Application web complète développée avec React, Redux et Routing. Interface moderne avec système de gestion des réservations en temps réel.
-            </p>
-            <div class="flex gap-2 mb-4 flex-wrap">
-              <span class="tag bg-purple-100 text-purple-700">React</span>
-              <span class="tag bg-blue-100 text-blue-700">Redux</span>
-              <span class="tag bg-pink-100 text-pink-700">Routing</span>
-            </div>
-            <div class="flex gap-3">
-              <a href="#" class="flex-1 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-full font-bold text-center text-sm hover:shadow-lg transition">
-                Voir Détails
-              </a>
-              <a href="#" class="w-10 h-10 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center text-gray-700 hover:bg-white transition">
-                <i class="fab fa-github"></i>
+Car rental website built with React/Redux, featuring separate management for users and administrators.            </p>
+            <div class="flex justify-end">
+              <a href="project1-details.html" class="group w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white hover:from-purple-700 hover:to-blue-700 hover:shadow-xl hover:scale-110 transition-all duration-300">
+                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform text-lg"></i>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 2 -->
-        <div class="project-card glass-card rounded-3xl overflow-hidden shadow-2xl" data-category="app">
+        <!-- Project 3 (left) -->
+        <div class="project-card glass-card rounded-3xl overflow-hidden shadow-2xl" data-category="web">
           <div class="project-image-container">
-            <img src="projet.jpg" alt="Gestion de Tâches" class="project-image w-full h-full object-cover">
+            <div class="w-full h-full bg-gradient-to-br from-purple-500 via-indigo-400 to-blue-400 flex items-center justify-center">
+              <img src="prj5.jpeg" alt="Election Management" class="project-image w-full h-full object-cover">
+            </div>
             <div class="project-overlay">
               <div class="text-white">
-                <h3 class="text-2xl font-bold mb-2">Task Manager</h3>
-                <p class="text-sm opacity-90">Organisez vos tâches efficacement</p>
+                <h3 class="text-2xl font-bold mb-2">Election Management Website</h3>
+                <p class="text-sm opacity-90">Online election organization and tracking</p>
               </div>
             </div>
           </div>
           <div class="p-6 relative z-10">
-            <h3 class="text-xl font-bold mb-3 text-purple-700">Application de Gestion de Tâches</h3>
+            <h3 class="text-xl font-bold mb-3 text-purple-700">Election Management Website</h3>
             <p class="text-gray-600 mb-4 text-sm leading-relaxed">
-              Application Python avec MongoDB pour gérer les tâches quotidiennes. Interface intuitive avec notifications et système de priorités.
+              Web application for organizing and managing online elections: adding candidates and tracking results.
             </p>
-            <div class="flex gap-2 mb-4 flex-wrap">
-              <span class="tag bg-green-100 text-green-700">Python</span>
-              <span class="tag bg-cyan-100 text-cyan-700">MongoDB</span>
-              <span class="tag bg-yellow-100 text-yellow-700">API</span>
-            </div>
-            <div class="flex gap-3">
-              <a href="#" class="flex-1 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-full font-bold text-center text-sm hover:shadow-lg transition">
-                Voir Détails
-              </a>
-              <a href="#" class="w-10 h-10 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center text-gray-700 hover:bg-white transition">
-                <i class="fab fa-github"></i>
+            <div class="flex justify-end">
+              <a href="project3-details.html" class="group w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white hover:from-purple-700 hover:to-blue-700 hover:shadow-xl hover:scale-110 transition-all duration-300">
+                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform text-lg"></i>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 3 -->
+        <!-- Project 5 (left) -->
+        <div class="project-card glass-card rounded-3xl overflow-hidden shadow-2xl" data-category="web">
+          <div class="project-image-container">
+            <div class="w-full h-full bg-gradient-to-br from-pink-400 via-rose-400 to-orange-400 flex items-center justify-center">
+              <img src="prj4.jpg" alt="Photography Website" class="project-image w-full h-full object-cover">
+            </div>
+            <div class="project-overlay">
+              <div class="text-white">
+                <h3 class="text-2xl font-bold mb-2">Photography Website</h3>
+                <p class="text-sm opacity-90">Professional photography portfolio</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 relative z-10">
+            <h3 class="text-xl font-bold mb-3 text-purple-700">Photography Website</h3>
+            <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+              Professional website showcasing a photo portfolio with galleries, recent projects, and session booking form.
+            </p>
+            <div class="flex justify-end">
+              <a href="project5-details.html" class="group w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white hover:from-purple-700 hover:to-blue-700 hover:shadow-xl hover:scale-110 transition-all duration-300">
+                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform text-lg"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        </div>
+        <!-- End left column -->
+        
+        <!-- Right column (shifted up) -->
+        <div class="flex flex-col gap-8" style="margin-top: -120px;">
+        
+        <!-- Project 2 (right) -->
         <div class="project-card glass-card rounded-3xl overflow-hidden shadow-2xl" data-category="fullstack web">
           <div class="project-image-container">
-            <img src="image2.png" alt="Planification Voyage" class="project-image w-full h-full object-cover">
+            <img src="image2.png" alt="Travel Planning" class="project-image w-full h-full object-cover">
             <div class="project-overlay">
               <div class="text-white">
                 <h3 class="text-2xl font-bold mb-2">Travel Planner</h3>
-                <p class="text-sm opacity-90">Planifiez vos voyages facilement</p>
+                <p class="text-sm opacity-90">Plan your trips easily</p>
               </div>
             </div>
           </div>
           <div class="p-6 relative z-10">
-            <h3 class="text-xl font-bold mb-3 text-purple-700">Site de Planification de Voyage</h3>
+            <h3 class="text-xl font-bold mb-3 text-purple-700">Travel Planning Website</h3>
             <p class="text-gray-600 mb-4 text-sm leading-relaxed">
-              Plateforme complète avec Laravel et React pour gérer hôtels, vols et activités. Système de réservation intégré et paiement sécurisé.
+              Travel web project allowing users to plan and book each step of their trip according to their preferences.
             </p>
-            <div class="flex gap-2 mb-4 flex-wrap">
-              <span class="tag bg-red-100 text-red-700">Laravel</span>
-              <span class="tag bg-purple-100 text-purple-700">React</span>
-              <span class="tag bg-blue-100 text-blue-700">MySQL</span>
-            </div>
-            <div class="flex gap-3">
-              <a href="#" class="flex-1 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-full font-bold text-center text-sm hover:shadow-lg transition">
-                Voir Détails
-              </a>
-              <a href="#" class="w-10 h-10 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center text-gray-700 hover:bg-white transition">
-                <i class="fab fa-github"></i>
+            <div class="flex justify-end">
+              <a href="project2-details.html" class="group w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white hover:from-purple-700 hover:to-blue-700 hover:shadow-xl hover:scale-110 transition-all duration-300">
+                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform text-lg"></i>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 4 -->
-        <div class="project-card glass-card rounded-3xl overflow-hidden shadow-2xl" data-category="web">
-          <div class="project-image-container">
-            <div class="w-full h-full bg-gradient-to-br from-indigo-400 via-purple-400 to-pink-400 flex items-center justify-center">
-              <i class="fas fa-shopping-cart text-white text-8xl opacity-50"></i>
-            </div>
-            <div class="project-overlay">
-              <div class="text-white">
-                <h3 class="text-2xl font-bold mb-2">E-Commerce</h3>
-                <p class="text-sm opacity-90">Boutique en ligne moderne</p>
-              </div>
-            </div>
-          </div>
-          <div class="p-6 relative z-10">
-            <h3 class="text-xl font-bold mb-3 text-purple-700">Plateforme E-Commerce</h3>
-            <p class="text-gray-600 mb-4 text-sm leading-relaxed">
-              Site e-commerce complet avec panier, gestion des produits, système de paiement et tableau de bord administrateur. Design responsive et moderne.
-            </p>
-            <div class="flex gap-2 mb-4 flex-wrap">
-              <span class="tag bg-orange-100 text-orange-700">HTML/CSS</span>
-              <span class="tag bg-yellow-100 text-yellow-700">JavaScript</span>
-              <span class="tag bg-indigo-100 text-indigo-700">PHP</span>
-            </div>
-            <div class="flex gap-3">
-              <a href="#" class="flex-1 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-full font-bold text-center text-sm hover:shadow-lg transition">
-                Voir Détails
-              </a>
-              <a href="#" class="w-10 h-10 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center text-gray-700 hover:bg-white transition">
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 5 -->
-        <div class="project-card glass-card rounded-3xl overflow-hidden shadow-2xl" data-category="app fullstack">
-          <div class="project-image-container">
-            <div class="w-full h-full bg-gradient-to-br from-green-400 via-cyan-400 to-blue-400 flex items-center justify-center">
-              <i class="fas fa-comments text-white text-8xl opacity-50"></i>
-            </div>
-            <div class="project-overlay">
-              <div class="text-white">
-                <h3 class="text-2xl font-bold mb-2">Chat App</h3>
-                <p class="text-sm opacity-90">Messagerie instantanée</p>
-              </div>
-            </div>
-          </div>
-          <div class="p-6 relative z-10">
-            <h3 class="text-xl font-bold mb-3 text-purple-700">Application de Chat en Temps Réel</h3>
-            <p class="text-gray-600 mb-4 text-sm leading-relaxed">
-              Application de messagerie instantanée avec WebSocket, partage de fichiers, notifications push et système d'authentification sécurisé.
-            </p>
-            <div class="flex gap-2 mb-4 flex-wrap">
-              <span class="tag bg-green-100 text-green-700">Node.js</span>
-              <span class="tag bg-cyan-100 text-cyan-700">Socket.io</span>
-              <span class="tag bg-purple-100 text-purple-700">React</span>
-            </div>
-            <div class="flex gap-3">
-              <a href="#" class="flex-1 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-full font-bold text-center text-sm hover:shadow-lg transition">
-                Voir Détails
-              </a>
-              <a href="#" class="w-10 h-10 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center text-gray-700 hover:bg-white transition">
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 6 -->
-        <div class="project-card glass-card rounded-3xl overflow-hidden shadow-2xl" data-category="web">
-          <div class="project-image-container">
-            <div class="w-full h-full bg-gradient-to-br from-pink-400 via-red-400 to-orange-400 flex items-center justify-center">
-              <i class="fas fa-utensils text-white text-8xl opacity-50"></i>
-            </div>
-            <div class="project-overlay">
-              <div class="text-white">
-                <h3 class="text-2xl font-bold mb-2">Restaurant</h3>
-                <p class="text-sm opacity-90">Site vitrine élégant</p>
-              </div>
-            </div>
-          </div>
-          <div class="p-6 relative z-10">
-            <h3 class="text-xl font-bold mb-3 text-purple-700">Site Web Restaurant</h3>
-            <p class="text-gray-600 mb-4 text-sm leading-relaxed">
-              Site vitrine moderne pour restaurant avec menu interactif, système de réservation en ligne, galerie photos et intégration Google Maps.
-            </p>
-            <div class="flex gap-2 mb-4 flex-wrap">
-              <span class="tag bg-orange-100 text-orange-700">HTML5</span>
-              <span class="tag bg-blue-100 text-blue-700">Tailwind</span>
-              <span class="tag bg-yellow-100 text-yellow-700">JavaScript</span>
-            </div>
-            <div class="flex gap-3">
-              <a href="#" class="flex-1 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-full font-bold text-center text-sm hover:shadow-lg transition">
-                Voir Détails
-              </a>
-              <a href="#" class="w-10 h-10 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center text-gray-700 hover:bg-white transition">
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 7 -->
-        <div class="project-card glass-card rounded-3xl overflow-hidden shadow-2xl" data-category="fullstack app">
-          <div class="project-image-container">
-            <div class="w-full h-full bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400 flex items-center justify-center">
-              <i class="fas fa-graduation-cap text-white text-8xl opacity-50"></i>
-            </div>
-            <div class="project-overlay">
-              <div class="text-white">
-                <h3 class="text-2xl font-bold mb-2">E-Learning</h3>
-                <p class="text-sm opacity-90">Plateforme éducative</p>
-              </div>
-            </div>
-          </div>
-          <div class="p-6 relative z-10">
-            <h3 class="text-xl font-bold mb-3 text-purple-700">Plateforme E-Learning</h3>
-            <p class="text-gray-600 mb-4 text-sm leading-relaxed">
-              Système complet de gestion d'apprentissage avec cours vidéo, quiz interactifs, suivi de progression et certificats. Interface élève et professeur.
-            </p>
-            <div class="flex gap-2 mb-4 flex-wrap">
-              <span class="tag bg-red-100 text-red-700">Laravel</span>
-              <span class="tag bg-purple-100 text-purple-700">Vue.js</span>
-              <span class="tag bg-green-100 text-green-700">MySQL</span>
-            </div>
-            <div class="flex gap-3">
-              <a href="#" class="flex-1 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-full font-bold text-center text-sm hover:shadow-lg transition">
-                Voir Détails
-              </a>
-              <a href="#" class="w-10 h-10 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center text-gray-700 hover:bg-white transition">
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 8 -->
+        <!-- Project 4 (right) -->
         <div class="project-card glass-card rounded-3xl overflow-hidden shadow-2xl" data-category="web">
           <div class="project-image-container">
             <div class="w-full h-full bg-gradient-to-br from-blue-400 via-indigo-400 to-purple-400 flex items-center justify-center">
-              <i class="fas fa-briefcase text-white text-8xl opacity-50"></i>
+            <img src="prj7.png" alt="Interactive Portfolio" class="project-image w-full h-full object-cover">
             </div>
             <div class="project-overlay">
               <div class="text-white">
                 <h3 class="text-2xl font-bold mb-2">Portfolio</h3>
-                <p class="text-sm opacity-90">Site personnel créatif</p>
+                <p class="text-sm opacity-90">Creative personal website</p>
               </div>
             </div>
           </div>
           <div class="p-6 relative z-10">
-            <h3 class="text-xl font-bold mb-3 text-purple-700">Portfolio Personnel Interactif</h3>
+            <h3 class="text-xl font-bold mb-3 text-purple-700">Interactive Personal Portfolio</h3>
             <p class="text-gray-600 mb-4 text-sm leading-relaxed">
-              Site portfolio moderne avec animations avancées, mode sombre/clair, galerie de projets filtrable et formulaire de contact fonctionnel.
+              Modern portfolio website with advanced animations, dark/light mode, filterable project gallery, and functional contact form.
             </p>
-            <div class="flex gap-2 mb-4 flex-wrap">
-              <span class="tag bg-cyan-100 text-cyan-700">React</span>
-              <span class="tag bg-pink-100 text-pink-700">Framer Motion</span>
-              <span class="tag bg-blue-100 text-blue-700">Tailwind</span>
-            </div>
-            <div class="flex gap-3">
-              <a href="#" class="flex-1 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-full font-bold text-center text-sm hover:shadow-lg transition">
-                Voir Détails
-              </a>
-              <a href="#" class="w-10 h-10 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center text-gray-700 hover:bg-white transition">
-                <i class="fab fa-github"></i>
+            <div class="flex justify-end">
+              <a href="project4-details.html" class="group w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white hover:from-purple-700 hover:to-blue-700 hover:shadow-xl hover:scale-110 transition-all duration-300">
+                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform text-lg"></i>
               </a>
             </div>
           </div>
         </div>
 
-      </div>
+        <!-- Project 6 (right) -->
+        <div class="project-card glass-card rounded-3xl overflow-hidden shadow-2xl" data-category="">
+          <div class="project-image-container">
+            <img src="prj6.jpeg" alt="Library Management" class="project-image w-full h-full object-cover">
+            <div class="project-overlay">
+              <div class="text-white">
+                <h3 class="text-2xl font-bold mb-2">Library Management Website</h3>
+                <p class="text-sm opacity-90">Complete book and member management</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 relative z-10">
+            <h3 class="text-xl font-bold mb-3 text-purple-700">Library Management Website</h3>
+            <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+              Web application for complete library management: adding, removing, borrowing books, and managing members.
+            </p>
+            <div class="flex justify-end">
+              <a href="project6-details.html" class="group w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white hover:from-purple-700 hover:to-blue-700 hover:shadow-xl hover:scale-110 transition-all duration-300">
+                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform text-lg"></i>
+              </a>
+            </div>
+          </div>
+        </div>
 
-      <!-- Stats Section -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 animate-fade-in">
-        <div class="glass-card rounded-2xl p-6 text-center hover:scale-105 transition">
-          <div class="text-4xl font-black gradient-text mb-2">8+</div>
-          <p class="text-gray-600 font-medium">Projets Complétés</p>
         </div>
-        <div class="glass-card rounded-2xl p-6 text-center hover:scale-105 transition">
-          <div class="text-4xl font-black gradient-text mb-2">15+</div>
-          <p class="text-gray-600 font-medium">Technologies</p>
-        </div>
-        <div class="glass-card rounded-2xl p-6 text-center hover:scale-105 transition">
-          <div class="text-4xl font-black gradient-text mb-2">100%</div>
-          <p class="text-gray-600 font-medium">Satisfaction Client</p>
-        </div>
-        <div class="glass-card rounded-2xl p-6 text-center hover:scale-105 transition">
-          <div class="text-4xl font-black gradient-text mb-2">2+</div>
-          <p class="text-gray-600 font-medium">Années d'Expérience</p>
-        </div>
+        <!-- End right column -->
+        
       </div>
+    
 
-      <!-- CTA Section -->
-      <div class="text-center mt-20 glass-card rounded-3xl p-12 shadow-2xl animate-fade-in">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Vous avez un projet en tête ?</h2>
-        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-          Je serais ravi de discuter de votre projet et de voir comment nous pouvons travailler ensemble pour le réaliser !
-        </p>
-        <div class="flex gap-4 justify-center flex-wrap">
-          <a href="index.html#contact" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-2xl transition transform hover:scale-105">
-            Démarrer un Projet
-          </a>
-          <a href="about.html" class="bg-white/40 backdrop-blur-md text-purple-700 px-8 py-4 rounded-full font-bold border-2 border-white/50 hover:bg-white/60 transition">
-            En Savoir Plus
-          </a>
-        </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="relative py-20 overflow-hidden bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50">
+    <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">Have a project in mind?</h2>
+      <p class="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
+        I'd love to discuss your project and see how we can work together to bring it to life!
+      </p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href="index.html#contact" class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-10 py-4 rounded-full font-bold shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+          Start a Project
+        </a>
+        <a href="about.html" class="bg-white/60 backdrop-blur-md text-gray-700 px-10 py-4 rounded-full font-bold border-2 border-white/80 hover:bg-white/80 transition-all duration-300">
+          Learn More
+        </a>
       </div>
     </div>
   </section>
@@ -466,7 +452,7 @@
   <!-- Footer -->
   <footer class="py-12 bg-white/20 backdrop-blur-md border-t border-white/30 mt-20">
     <div class="max-w-7xl mx-auto px-6 text-center">
-      <p class="text-gray-600 mb-4">© 2025 Yousra Akajou. Tous droits réservés.</p>
+      <p class="text-gray-600 mb-4">© 2025 Yousra Akajou. All rights reserved.</p>
       <div class="flex justify-center gap-4 mb-4">
         <a href="#" class="text-gray-600 hover:text-purple-600 transition">
           <i class="fab fa-linkedin text-xl"></i>
@@ -521,6 +507,33 @@
           }
         });
       });
+    });
+
+    // Dark Mode Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const themeIcon = themeToggle.querySelector('i');
+    
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+      body.classList.add('dark-mode');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+    }
+    
+    themeToggle.addEventListener('click', function() {
+      body.classList.toggle('dark-mode');
+      
+      if (body.classList.contains('dark-mode')) {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+      }
     });
   </script>
 </body>
