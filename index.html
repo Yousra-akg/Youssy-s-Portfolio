@@ -194,6 +194,255 @@
     body.dark-mode .theme-toggle:hover {
       background: rgba(139, 92, 246, 0.5);
     }
+    .burger-menu {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .burger-menu span {
+      width: 25px;
+      height: 3px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+    .burger-menu.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+    .burger-menu.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .burger-menu.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 73px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 1rem;
+      z-index: 40;
+      animation: slideDown 0.3s ease-out;
+    }
+    body.dark-mode .mobile-menu {
+      background: rgba(15, 23, 42, 0.95);
+    }
+    .mobile-menu.active {
+      display: block;
+    }
+    .mobile-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .mobile-menu ul li {
+      margin: 0.5rem 0;
+    }
+    .mobile-menu ul li a {
+      display: block;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    .mobile-menu ul li a:hover {
+      background: rgba(139, 92, 246, 0.1);
+    }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      body {
+        zoom: 1;
+        -moz-transform: scale(1);
+        font-size: 14px;
+      }
+      
+      /* Show burger menu, hide desktop menu */
+      .burger-menu {
+        display: flex;
+      }
+      nav ul {
+        display: none !important;
+      }
+      
+      /* Navbar adjustments */
+      nav {
+        padding: 0.5rem 0 !important;
+      }
+      nav .text-2xl {
+        font-size: 1.5rem !important;
+      }
+      
+      /* Adjust font sizes - more reduction */
+      .text-6xl, .text-5xl {
+        font-size: 1.75rem !important;
+        line-height: 1.2 !important;
+      }
+      .text-4xl {
+        font-size: 1.5rem !important;
+      }
+      .text-3xl {
+        font-size: 1.25rem !important;
+      }
+      .text-2xl {
+        font-size: 1.125rem !important;
+      }
+      .text-xl {
+        font-size: 1rem !important;
+      }
+      .text-lg {
+        font-size: 0.95rem !important;
+      }
+      .text-base {
+        font-size: 0.875rem !important;
+      }
+      .text-sm {
+        font-size: 0.8rem !important;
+      }
+      
+      /* Adjust padding and margins */
+      section {
+        padding: 2rem 1rem !important;
+      }
+      section#home {
+        padding-top: 6rem !important;
+      }
+      
+      .glass-card {
+        padding: 1rem !important;
+      }
+      
+      /* Buttons - smaller */
+      a.px-8 {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+      }
+      a.py-4 {
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
+      }
+      button {
+        font-size: 0.875rem !important;
+      }
+      
+      /* Images - reduce size */
+      img {
+        max-height: 300px !important;
+      }
+      
+      /* Social icons - smaller */
+      .social-icon {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+      }
+      .social-icon i {
+        font-size: 1rem !important;
+      }
+      
+      /* Ribbon adjustments */
+      .ribbon-item {
+        font-size: 1rem !important;
+        padding: 0 1.5rem !important;
+      }
+      .ribbon-icon {
+        font-size: 0.875rem !important;
+        margin: 0 0.75rem !important;
+      }
+      
+      /* Grid adjustments */
+      .grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+      }
+      
+      /* Tech skills grid */
+      .grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      
+      /* Stat cards */
+      .stat-card {
+        margin-bottom: 1rem;
+        padding: 1rem !important;
+      }
+      
+      /* Floating decorations - hide or reduce */
+      .floating-icon {
+        display: none;
+      }
+      .absolute.w-32, .absolute.w-48, .absolute.w-64 {
+        width: 3rem !important;
+        height: 3rem !important;
+      }
+      
+      /* Contact form */
+      input, textarea {
+        font-size: 0.875rem !important;
+        padding: 0.75rem !important;
+      }
+      
+      /* Icons - smaller */
+      .fab, .fas {
+        font-size: inherit !important;
+      }
+      .text-4xl.fab, .text-4xl.fas {
+        font-size: 2rem !important;
+      }
+      .text-3xl.fab, .text-3xl.fas {
+        font-size: 1.5rem !important;
+      }
+      
+      /* Spacing */
+      .gap-12 {
+        gap: 1.5rem !important;
+      }
+      .gap-8 {
+        gap: 1rem !important;
+      }
+      .gap-6 {
+        gap: 0.75rem !important;
+      }
+      .mb-16 {
+        margin-bottom: 2rem !important;
+      }
+      .mb-12 {
+        margin-bottom: 1.5rem !important;
+      }
+      .mb-8 {
+        margin-bottom: 1rem !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .text-6xl, .text-5xl {
+        font-size: 1.75rem !important;
+      }
+      .text-4xl {
+        font-size: 1.5rem !important;
+      }
+      
+      .ribbon-item {
+        font-size: 1rem !important;
+        padding: 0 1.5rem !important;
+      }
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-purple-100 via-blue-50 to-pink-100 text-gray-800 font-sans antialiased overflow-x-hidden dark-mode">
@@ -211,9 +460,24 @@
         <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
           <i class="fas fa-moon text-purple-600 text-lg"></i>
         </button>
+        <div class="burger-menu" id="burgerMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#home" class="text-gray-700 hover:text-purple-600 transition font-medium">Home</a></li>
+      <li><a href="about.html" class="text-gray-700 hover:text-purple-600 transition font-medium">About</a></li>
+      <li><a href="project.html" class="text-gray-700 hover:text-purple-600 transition font-medium">Projects</a></li>
+      <li><a href="#contact" class="text-gray-700 hover:text-purple-600 transition font-medium">Contact</a></li>
+    </ul>
+  </div>
 
   <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-40">
     <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-purple-300 to-pink-300 rounded-full opacity-40 blur-2xl animate-float"></div>
@@ -622,5 +886,25 @@
     function resetForm() {
       form.classList.remove('hidden');
       successMessage.classList.add('hidden');
+    }
+
+    // Burger Menu Toggle
+    const burgerMenu = document.getElementById('burgerMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (burgerMenu && mobileMenu) {
+      burgerMenu.addEventListener('click', function() {
+        burgerMenu.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+      });
+      
+      // Close mobile menu when clicking on a link
+      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          burgerMenu.classList.remove('active');
+          mobileMenu.classList.remove('active');
+        });
+      });
     }
   </script>
