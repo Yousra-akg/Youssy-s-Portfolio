@@ -281,7 +281,6 @@
       }
     }
 
-    /* Mobile Responsive Styles */
     @media (max-width: 768px) {
       body {
         zoom: 1;
@@ -289,7 +288,6 @@
         font-size: 14px;
       }
       
-      /* Show burger menu, hide desktop menu */
       .burger-menu {
         display: flex;
       }
@@ -297,7 +295,6 @@
         display: none !important;
       }
       
-      /* Navbar adjustments */
       nav {
         padding: 0.5rem 0 !important;
       }
@@ -305,25 +302,21 @@
         font-size: 1.5rem !important;
       }
       
-      /* Add spacing below navbar */
       section#home {
         margin-top: 5rem !important;
         padding-top: 3rem !important;
       }
       
-      /* Image spacing - reduce size and add margin */
       section#home img {
         max-height: 250px !important;
         margin-bottom: 3rem !important;
       }
       
-      /* Social icons - add top margin */
       section#home .flex.gap-4.pt-4 {
         padding-top: 2rem !important;
         margin-top: 1rem !important;
       }
       
-      /* Adjust font sizes - more reduction */
       .text-6xl, .text-5xl {
         font-size: 1.75rem !important;
         line-height: 1.2 !important;
@@ -350,7 +343,6 @@
         font-size: 0.8rem !important;
       }
       
-      /* Adjust padding and margins */
       section {
         padding: 2rem 1rem !important;
       }
@@ -359,7 +351,6 @@
         padding: 1rem !important;
       }
       
-      /* Buttons - smaller */
       a.px-8 {
         padding-left: 1.5rem !important;
         padding-right: 1.5rem !important;
@@ -372,12 +363,10 @@
         font-size: 0.875rem !important;
       }
       
-      /* Images - reduce size */
       img {
         max-height: 300px !important;
       }
       
-      /* Social icons - smaller */
       .social-icon {
         width: 2.5rem !important;
         height: 2.5rem !important;
@@ -386,7 +375,6 @@
         font-size: 1rem !important;
       }
       
-      /* Ribbon adjustments */
       .ribbon-item {
         font-size: 1rem !important;
         padding: 0 1.5rem !important;
@@ -396,24 +384,20 @@
         margin: 0 0.75rem !important;
       }
       
-      /* Grid adjustments */
       .grid {
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
       }
       
-      /* Tech skills grid */
       .grid-cols-3 {
         grid-template-columns: repeat(2, 1fr) !important;
       }
       
-      /* Stat cards */
       .stat-card {
         margin-bottom: 1rem;
         padding: 1rem !important;
       }
       
-      /* Floating decorations - hide or reduce */
       .floating-icon {
         display: none;
       }
@@ -422,7 +406,6 @@
         height: 3rem !important;
       }
       
-      /* Contact form - reduce width and improve layout */
       section#contact .glass-card {
         padding: 1rem !important;
       }
@@ -446,13 +429,11 @@
         min-height: 80px !important;
       }
       
-      /* Contact form button */
       section#contact button[type="submit"] {
         padding: 0.6rem 1rem !important;
         font-size: 0.8rem !important;
       }
       
-      /* Contact info cards - reduce size */
       section#contact .flex.items-start {
         padding: 1rem !important;
       }
@@ -467,7 +448,6 @@
         height: 2.5rem !important;
       }
       
-      /* Icons - smaller */
       .fab, .fas {
         font-size: inherit !important;
       }
@@ -513,9 +493,7 @@
       }
     }
     
-    /* Very small screens (300px width) */
     @media (max-width: 360px) {
-      /* Contact form - extra compact for very small screens */
       section#contact .glass-card {
         padding: 0.75rem !important;
       }
@@ -534,7 +512,6 @@
         font-size: 0.75rem !important;
       }
       
-      /* Reduce contact info cards padding */
       section#contact .flex.items-start {
         padding: 0.75rem !important;
         gap: 0.5rem !important;
@@ -545,7 +522,6 @@
         height: 2.5rem !important;
       }
       
-      /* Image even smaller */
       section#home img {
         max-height: 200px !important;
       }
@@ -576,7 +552,6 @@
     </div>
   </nav>
 
-  <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
     <ul>
       <li><a href="#home" class="text-gray-700 hover:text-purple-600 transition font-medium">Home</a></li>
@@ -817,17 +792,14 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
   <section id="contact" class="py-20 relative scroll-reveal">
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-5xl font-black text-center mb-16 gradient-text">Contact Me</h2>
       <div class="glass-card rounded-3xl p-12 shadow-2xl">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <!-- Contact Form -->
           <div>
             <h3 class="text-2xl font-bold text-purple-700 mb-6">Send Me a Message</h3>
             
-            <!-- Success Message (hidden by default) -->
             <div id="successMessage" class="hidden bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-400 rounded-3xl p-8 text-center space-y-4 animate-slide-in">
               <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto">
                 <i class="fas fa-check text-white text-4xl"></i>
@@ -839,7 +811,6 @@
               </button>
             </div>
 
-            <!-- Contact Form -->
             <form id="contactForm" action="https://formspree.io/f/xnngoadj" method="POST" class="space-y-6">
               <div>
                 <input type="text" name="name" placeholder="Your Name" required class="w-full bg-white/50 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
@@ -856,11 +827,9 @@
             </form>
           </div>
 
-          <!-- Contact Info -->
           <div class="space-y-8">
             <h3 class="text-2xl font-bold text-purple-700 mb-6">Contact Information</h3>
             
-            <!-- Email -->
             <div class="flex items-start gap-6 bg-white/50 backdrop-blur-md rounded-2xl p-6 hover:scale-105 transition">
               <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
                 <i class="fas fa-envelope text-white text-2xl"></i>
@@ -871,7 +840,6 @@
               </div>
             </div>
 
-            <!-- Phone -->
             <div class="flex items-start gap-6 bg-white/50 backdrop-blur-md rounded-2xl p-6 hover:scale-105 transition">
               <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
                 <i class="fas fa-phone text-white text-2xl"></i>
@@ -882,7 +850,6 @@
               </div>
             </div>
 
-            <!-- Location -->
             <div class="flex items-start gap-6 bg-white/50 backdrop-blur-md rounded-2xl p-6 hover:scale-105 transition">
               <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
                 <i class="fas fa-map-marker-alt text-white text-2xl"></i>
@@ -893,7 +860,6 @@
               </div>
             </div>
 
-            <!-- Social Links -->
           <div class="bg-white/50 backdrop-blur-md rounded-2xl p-6">
             <h4 class="font-bold text-gray-800 mb-4">Follow Me</h4>
             <div class="flex gap-4">
@@ -912,7 +878,6 @@
       </div>
     </div>
   </section>
-  <!-- Footer -->
   <footer class="py-12 bg-white/20 backdrop-blur-md border-t border-white/30 mt-20">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <p class="text-gray-600 mb-4"> 2025 Yousra Akajou. All rights reserved.</p>
@@ -932,13 +897,11 @@
   </footer>
 
   <script>
-    // Dark Mode Toggle - Default to Dark
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
     const themeIcon = themeToggle.querySelector('i');
     
-    // Check for saved theme preference or default to dark mode
-    const currentTheme = localStorage.getItem('theme') || 'dark';
+    const currentTheme = localStorage.getItem('theme') || 'light';
     if (currentTheme === 'dark') {
       body.classList.add('dark-mode');
       themeIcon.classList.remove('fa-moon');
@@ -961,14 +924,12 @@
       }
     });
 
-    // Contact form management
     const form = document.getElementById('contactForm');
     const successMessage = document.getElementById('successMessage');
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      // Send form via fetch
       fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
@@ -977,7 +938,6 @@
         }
       }).then(response => {
         if (response.ok) {
-          // Hide form and show success message
           form.classList.add('hidden');
           successMessage.classList.remove('hidden');
           form.reset();
@@ -989,13 +949,11 @@
       });
     });
 
-    // Function to reset the form
     function resetForm() {
       form.classList.remove('hidden');
       successMessage.classList.add('hidden');
     }
 
-    // Burger Menu Toggle
     const burgerMenu = document.getElementById('burgerMenu');
     const mobileMenu = document.getElementById('mobileMenu');
     
@@ -1005,7 +963,6 @@
         mobileMenu.classList.toggle('active');
       });
       
-      // Close mobile menu when clicking on a link
       const mobileMenuLinks = mobileMenu.querySelectorAll('a');
       mobileMenuLinks.forEach(link => {
         link.addEventListener('click', function() {
@@ -1015,7 +972,6 @@
       });
     }
     
-    // Scroll Reveal Animation
     const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
     const revealOnScroll = () => {
       scrollRevealElements.forEach(element => {

@@ -863,13 +863,13 @@ Digital Developer
   </footer>
 
   <script>
-    // Dark Mode Toggle - Default to Dark
+    // Dark Mode Toggle - Default to Light
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
     const themeIcon = themeToggle.querySelector('i');
     
-    // Check for saved theme preference or default to dark mode
-    const currentTheme = localStorage.getItem('theme') || 'dark';
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
     if (currentTheme === 'dark') {
       body.classList.add('dark-mode');
       themeIcon.classList.remove('fa-moon');
