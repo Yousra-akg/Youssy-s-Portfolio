@@ -40,6 +40,15 @@
     .animate-float-slow { animation: floatSlow 10s ease-in-out infinite; }
     .animate-slide-in { animation: slideIn 0.8s ease-out forwards; }
     .animate-scroll { animation: scroll 30s linear infinite; }
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .glass-card {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(20px);
@@ -152,6 +161,12 @@
     }
     body.dark-mode .text-gray-500 {
       color: #64748b !important;
+    }
+    body.dark-mode p {
+      color: #e2e8f0 !important;
+    }
+    body.dark-mode .text-sm {
+      color: #e2e8f0 !important;
     }
     body.dark-mode nav {
       background: rgba(0, 0, 0, 0.5);
@@ -290,6 +305,24 @@
         font-size: 1.5rem !important;
       }
       
+      /* Add spacing below navbar */
+      section#home {
+        margin-top: 5rem !important;
+        padding-top: 3rem !important;
+      }
+      
+      /* Image spacing - reduce size and add margin */
+      section#home img {
+        max-height: 250px !important;
+        margin-bottom: 3rem !important;
+      }
+      
+      /* Social icons - add top margin */
+      section#home .flex.gap-4.pt-4 {
+        padding-top: 2rem !important;
+        margin-top: 1rem !important;
+      }
+      
       /* Adjust font sizes - more reduction */
       .text-6xl, .text-5xl {
         font-size: 1.75rem !important;
@@ -320,9 +353,6 @@
       /* Adjust padding and margins */
       section {
         padding: 2rem 1rem !important;
-      }
-      section#home {
-        padding-top: 6rem !important;
       }
       
       .glass-card {
@@ -392,10 +422,49 @@
         height: 3rem !important;
       }
       
-      /* Contact form */
+      /* Contact form - reduce width and improve layout */
+      section#contact .glass-card {
+        padding: 1rem !important;
+      }
+      
+      section#contact .grid {
+        gap: 1.5rem !important;
+      }
+      
+      section#contact h3 {
+        font-size: 1.125rem !important;
+        margin-bottom: 1rem !important;
+      }
+      
       input, textarea {
-        font-size: 0.875rem !important;
-        padding: 0.75rem !important;
+        font-size: 0.8rem !important;
+        padding: 0.6rem !important;
+        width: 100% !important;
+      }
+      
+      textarea {
+        min-height: 80px !important;
+      }
+      
+      /* Contact form button */
+      section#contact button[type="submit"] {
+        padding: 0.6rem 1rem !important;
+        font-size: 0.8rem !important;
+      }
+      
+      /* Contact info cards - reduce size */
+      section#contact .flex.items-start {
+        padding: 1rem !important;
+      }
+      
+      section#contact .w-16.h-16 {
+        width: 3rem !important;
+        height: 3rem !important;
+      }
+      
+      section#contact .w-12.h-12 {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
       }
       
       /* Icons - smaller */
@@ -441,6 +510,44 @@
       .ribbon-item {
         font-size: 1rem !important;
         padding: 0 1.5rem !important;
+      }
+    }
+    
+    /* Very small screens (300px width) */
+    @media (max-width: 360px) {
+      /* Contact form - extra compact for very small screens */
+      section#contact .glass-card {
+        padding: 0.75rem !important;
+      }
+      
+      section#contact h3 {
+        font-size: 1rem !important;
+      }
+      
+      input, textarea {
+        font-size: 0.75rem !important;
+        padding: 0.5rem !important;
+      }
+      
+      section#contact button[type="submit"] {
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.75rem !important;
+      }
+      
+      /* Reduce contact info cards padding */
+      section#contact .flex.items-start {
+        padding: 0.75rem !important;
+        gap: 0.5rem !important;
+      }
+      
+      section#contact .w-16.h-16 {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+      }
+      
+      /* Image even smaller */
+      section#home img {
+        max-height: 200px !important;
       }
     }
   </style>
@@ -596,7 +703,7 @@
     </div>
   </section>
 
-  <section id="about" class="py-20 relative">
+  <section id="about" class="py-20 relative scroll-reveal">
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-5xl font-black text-center mb-16 gradient-text">About Me</h2>
       <div class="glass-card rounded-3xl p-12 shadow-2xl">
@@ -661,7 +768,7 @@
 
   
  
-  <section id="projects" class="py-20 relative">
+  <section id="projects" class="py-20 relative scroll-reveal">
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-5xl font-black text-center mb-16 gradient-text">My Projects</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -711,7 +818,7 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-20 relative">
+  <section id="contact" class="py-20 relative scroll-reveal">
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-5xl font-black text-center mb-16 gradient-text">Contact Me</h2>
       <div class="glass-card rounded-3xl p-12 shadow-2xl">
@@ -907,4 +1014,20 @@
         });
       });
     }
+    
+    // Scroll Reveal Animation
+    const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+    const revealOnScroll = () => {
+      scrollRevealElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (elementTop < windowHeight * 0.85) {
+          element.classList.add('revealed');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
   </script>
+</body>
+</html>

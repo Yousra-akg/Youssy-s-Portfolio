@@ -112,6 +112,7 @@
     body.dark-mode .theme-toggle:hover {
       background: rgba(139, 92, 246, 0.5);
     }
+    .burger-menu{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border-radius:8px;transition:all .3s ease}.burger-menu span{width:25px;height:3px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:3px;transition:all .3s ease}.burger-menu.active span:nth-child(1){transform:rotate(45deg) translate(8px,8px)}.burger-menu.active span:nth-child(2){opacity:0}.burger-menu.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}.mobile-menu{display:none;position:fixed;top:73px;left:0;right:0;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.3);padding:1rem;z-index:40}body.dark-mode .mobile-menu{background:rgba(15,23,42,.95)}.mobile-menu.active{display:block}.mobile-menu ul{list-style:none;padding:0;margin:0}.mobile-menu ul li{margin:.5rem 0}.mobile-menu ul li a{display:block;padding:.75rem 1rem;border-radius:12px;transition:all .3s ease}.mobile-menu ul li a:hover{background:rgba(139,92,246,.1)}@media (max-width:768px){body{zoom:1;-moz-transform:scale(1)}.burger-menu{display:flex}nav ul{display:none!important}.text-5xl{font-size:1.75rem!important}.text-4xl{font-size:1.5rem!important}.text-3xl{font-size:1.25rem!important}.text-2xl{font-size:1.125rem!important}.text-xl{font-size:1rem!important}.text-lg{font-size:0.95rem!important}.text-base{font-size:0.875rem!important}section{padding-left:1rem!important;padding-right:1rem!important}.glass-card{padding:1.5rem!important}}
   </style>
 </head>
 <body class="bg-gradient-to-br from-purple-100 via-blue-50 to-pink-100 text-gray-800 font-sans antialiased overflow-x-hidden">
@@ -130,9 +131,11 @@
         <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
           <i class="fas fa-moon text-purple-600 text-lg"></i>
         </button>
+        <div class="burger-menu" id="burgerMenu"><span></span><span></span><span></span></div>
       </div>
     </div>
   </nav>
+  <div class="mobile-menu" id="mobileMenu"><ul><li><a href="index.html" class="text-gray-700 hover:text-purple-600 transition font-medium">Home</a></li><li><a href="about.html" class="text-gray-700 hover:text-purple-600 transition font-medium">About</a></li><li><a href="project.html" class="text-purple-600 font-bold">Projects</a></li><li><a href="index.html#contact" class="text-gray-700 hover:text-purple-600 transition font-medium">Contact</a></li></ul></div>
 
   <!-- Hero Section -->
   <section class="relative pt-32 pb-12 overflow-hidden">
@@ -169,7 +172,7 @@
 
           <div class="relative">
             <div class="glass-card rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500">
-              <img src="prj3.jpeg" alt="Election Management Website" class="w-full h-auto">
+              <img src="prj9.jpg" alt="Election Management Website" class="w-full h-auto">
             </div>
             <div class="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-xl animate-float">
               <div class="flex items-center gap-3">
@@ -251,11 +254,16 @@
     const body = document.body;
     const themeIcon = themeToggle.querySelector('i');
     
-    const currentTheme = localStorage.getItem('theme') || 'light';
+    // Check for saved theme preference (no default, user must choose)
+    const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'dark') {
       body.classList.add('dark-mode');
       themeIcon.classList.remove('fa-moon');
       themeIcon.classList.add('fa-sun');
+    } else if (currentTheme === 'light') {
+      body.classList.remove('dark-mode');
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
     }
     
     themeToggle.addEventListener('click', function() {
@@ -270,6 +278,24 @@
         themeIcon.classList.add('fa-moon');
         localStorage.setItem('theme', 'light');
       }
+    });
+    
+    // Burger Menu Toggle
+    const burgerMenu = document.getElementById('burgerMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    burgerMenu.addEventListener('click', function() {
+      burgerMenu.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking on a link
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        burgerMenu.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      });
     });
   </script>
 </body>

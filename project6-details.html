@@ -96,6 +96,108 @@
     }
     body.dark-mode .theme-toggle { background: rgba(139, 92, 246, 0.3); }
     body.dark-mode .theme-toggle:hover { background: rgba(139, 92, 246, 0.5); }
+    
+    /* Burger Menu Styles */
+    .burger-menu {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .burger-menu span {
+      width: 25px;
+      height: 3px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+    .burger-menu.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+    .burger-menu.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .burger-menu.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 73px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 1rem;
+      z-index: 40;
+    }
+    body.dark-mode .mobile-menu {
+      background: rgba(15, 23, 42, 0.95);
+    }
+    .mobile-menu.active {
+      display: block;
+    }
+    .mobile-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .mobile-menu ul li {
+      margin: 0.5rem 0;
+    }
+    .mobile-menu ul li a {
+      display: block;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    .mobile-menu ul li a:hover {
+      background: rgba(139, 92, 246, 0.1);
+    }
+    @media (max-width: 768px) {
+      body {
+        zoom: 1;
+        -moz-transform: scale(1);
+      }
+      .burger-menu {
+        display: flex;
+      }
+      nav ul {
+        display: none !important;
+      }
+      .text-5xl {
+        font-size: 1.75rem !important;
+      }
+      .text-4xl {
+        font-size: 1.5rem !important;
+      }
+      .text-3xl {
+        font-size: 1.25rem !important;
+      }
+      .text-2xl {
+        font-size: 1.125rem !important;
+      }
+      .text-xl {
+        font-size: 1rem !important;
+      }
+      .text-lg {
+        font-size: 0.95rem !important;
+      }
+      .text-base {
+        font-size: 0.875rem !important;
+      }
+      section {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+      .glass-card {
+        padding: 1.5rem !important;
+      }
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-purple-100 via-blue-50 to-pink-100 text-gray-800 font-sans antialiased overflow-x-hidden">
@@ -114,9 +216,24 @@
         <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
           <i class="fas fa-moon text-purple-600 text-lg"></i>
         </button>
+        <div class="burger-menu" id="burgerMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html" class="text-gray-700 hover:text-purple-600 transition font-medium">Home</a></li>
+      <li><a href="about.html" class="text-gray-700 hover:text-purple-600 transition font-medium">About</a></li>
+      <li><a href="project.html" class="text-purple-600 font-bold">Projects</a></li>
+      <li><a href="index.html#contact" class="text-gray-700 hover:text-purple-600 transition font-medium">Contact</a></li>
+    </ul>
+  </div>
 
   <!-- Hero Section -->
   <section class="relative pt-32 pb-12 overflow-hidden">
@@ -235,7 +352,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="py-12 bg-white/20 backdrop-blur-md border-t border-white/30">
     <div class="w-full px-6 text-center">
       <p class="text-gray-600 mb-4">© 2025 Yousra Akajou. All rights reserved.</p>
@@ -275,6 +391,26 @@
         localStorage.setItem('theme', 'light');
       }
     });
+    
+    // Burger Menu Toggle
+    const burgerMenu = document.getElementById('burgerMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (burgerMenu && mobileMenu) {
+      burgerMenu.addEventListener('click', function() {
+        burgerMenu.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+      });
+      
+      // Close mobile menu when clicking on a link
+      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          burgerMenu.classList.remove('active');
+          mobileMenu.classList.remove('active');
+        });
+      });
+    }
   </script>
 </body>
 </html>

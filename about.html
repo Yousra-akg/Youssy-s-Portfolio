@@ -62,6 +62,15 @@
     .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
     .animate-scale-in { animation: scaleIn 0.6s ease-out forwards; }
     .animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .glass-card {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(20px);
@@ -332,6 +341,25 @@
         height: 4rem !important;
       }
       
+      /* "2+ Years Experience" card - REDUCE SIZE ONLY */
+      .absolute.-bottom-6.-right-6 {
+        padding: 1rem !important;
+      }
+      
+      .absolute.-bottom-6.-right-6 .text-3xl {
+        font-size: 1.75rem !important;
+      }
+      
+      .absolute.-bottom-6.-right-6 .text-sm {
+        font-size: 0.75rem !important;
+      }
+      
+      /* Social media buttons - REDUCE SIZE */
+      .w-12.h-12 {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+      }
+      
       /* Hide desktop menu items on mobile */
       nav ul {
         display: none;
@@ -348,6 +376,24 @@
       }
       .text-4xl {
         font-size: 1.5rem !important;
+      }
+      
+      /* Even smaller for very small screens */
+      .absolute.-bottom-6.-right-6 {
+        padding: 0.75rem !important;
+      }
+      
+      .absolute.-bottom-6.-right-6 .text-3xl {
+        font-size: 1.5rem !important;
+      }
+      
+      .absolute.-bottom-6.-right-6 .text-sm {
+        font-size: 0.7rem !important;
+      }
+      
+      .w-12.h-12 {
+        width: 2rem !important;
+        height: 2rem !important;
       }
     }
   </style>
@@ -781,15 +827,15 @@ Digital Developer
 
       <!-- CTA Section -->
       <div class="text-center mt-40 animate-fade-in" style="animation-delay: 0.8s;">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Let's Work Together!</h2>
-        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-          Have a project in mind? Feel free to contact me to discuss it!
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">Have a project in mind?</h2>
+        <p class="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
+          I'd love to discuss your project and see how we can work together to bring it to life!
         </p>
-        <div class="flex gap-4 justify-center">
-          <a href="index.html#contact" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-2xl transition transform hover:scale-105">
-            Contact Me
+        <div class="flex gap-4 justify-center flex-wrap">
+          <a href="index.html#contact" class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-10 py-4 rounded-full font-bold shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+            Start a Project
           </a>
-          <a href="project.html" class="bg-white/40 backdrop-blur-md text-purple-700 px-8 py-4 rounded-full font-bold border-2 border-white/50 hover:bg-white/60 transition">
+          <a href="project.html" class="bg-white/60 backdrop-blur-md text-gray-700 px-10 py-4 rounded-full font-bold border-2 border-white/80 hover:bg-white/80 transition-all duration-300">
             View My Projects
           </a>
         </div>
@@ -798,7 +844,7 @@ Digital Developer
   </section>
 
   <!-- Footer -->
-  <footer class="py-12 bg-white/20 backdrop-blur-md border-t border-white/30 ">
+  <footer class="py-12 bg-white/20 backdrop-blur-md border-t border-white/30">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <p class="text-gray-600 mb-4"> 2025 Yousra Akajou. All rights reserved.</p>
       <div class="flex justify-center gap-4 mb-4">
