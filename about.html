@@ -109,10 +109,18 @@
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       background: rgba(255, 255, 255, 0.25) !important;
     }
+    body.dark-mode .skill-orb {
+      background: rgba(51, 65, 85, 0.9) !important;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
     .skill-orb:hover {
       transform: translateY(-10px) scale(1.05);
       box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
       background: rgba(255, 255, 255, 0.35) !important;
+    }
+    body.dark-mode .skill-orb:hover {
+      background: rgba(71, 85, 105, 0.95) !important;
+      box-shadow: 0 20px 40px rgba(139, 92, 246, 0.4);
     }
     .progress-ring {
       transition: stroke-dashoffset 1.5s ease-out;
@@ -158,8 +166,8 @@
       background: linear-gradient(to bottom right, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
     }
     body.dark-mode .glass-card {
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(139, 92, 246, 0.2);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(139, 92, 246, 0.3);
     }
     body.dark-mode .text-gray-800 {
       color: #f1f5f9 !important;
@@ -168,7 +176,7 @@
       color: #cbd5e1 !important;
     }
     body.dark-mode .text-gray-600 {
-      color: #94a3b8 !important;
+      color: #e2e8f0 !important;
     }
     body.dark-mode .text-gray-500 {
       color: #64748b !important;
@@ -181,17 +189,39 @@
       background: rgba(0, 0, 0, 0.5);
       border-top: 1px solid rgba(139, 92, 246, 0.2);
     }
-    body.dark-mode .bg-white/40,
-    body.dark-mode .bg-white/50 {
-      background: rgba(30, 41, 59, 0.6) !important;
-      border: 1px solid rgba(139, 92, 246, 0.1);
+    body.dark-mode .bg-white\/40,
+    body.dark-mode .bg-white\/50 {
+      background: rgba(15, 23, 42, 0.95) !important;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+    body.dark-mode .timeline-item > div {
+      background: rgba(15, 23, 42, 0.95) !important;
+      border: 1px solid rgba(139, 92, 246, 0.3);
     }
     body.dark-mode .bg-white/90 {
-      background: rgba(30, 41, 59, 0.9) !important;
-      border: 1px solid rgba(139, 92, 246, 0.2);
+      background: rgba(51, 65, 85, 0.95) !important;
+      border: 1px solid rgba(139, 92, 246, 0.3);
     }
     body.dark-mode .bg-white/20 {
       background: rgba(30, 41, 59, 0.4) !important;
+    }
+    body.dark-mode .bg-purple-100 {
+      background: rgba(139, 92, 246, 0.3) !important;
+    }
+    body.dark-mode .bg-green-100 {
+      background: rgba(34, 197, 94, 0.3) !important;
+    }
+    body.dark-mode .bg-blue-100 {
+      background: rgba(59, 130, 246, 0.3) !important;
+    }
+    body.dark-mode .text-purple-700 {
+      color: #c4b5fd !important;
+    }
+    body.dark-mode .text-green-700 {
+      color: #86efac !important;
+    }
+    body.dark-mode .text-blue-700 {
+      color: #93c5fd !important;
     }
     .theme-toggle {
       cursor: pointer;
@@ -288,14 +318,12 @@
       }
     }
 
-    /* Mobile Responsive Styles */
     @media (max-width: 768px) {
       body {
         zoom: 1;
         -moz-transform: scale(1);
       }
       
-      /* Show burger menu, hide desktop menu */
       .burger-menu {
         display: flex;
       }
@@ -303,7 +331,6 @@
         display: none !important;
       }
       
-      /* Adjust font sizes */
       .text-6xl, .text-5xl {
         font-size: 2rem !important;
       }
@@ -320,7 +347,6 @@
         font-size: 1.125rem !important;
       }
       
-      /* Adjust padding and margins */
       section {
         padding-left: 1rem !important;
         padding-right: 1rem !important;
@@ -330,18 +356,15 @@
         padding: 1.5rem !important;
       }
       
-      /* Grid adjustments */
       .grid {
         grid-template-columns: 1fr !important;
       }
       
-      /* Floating decorations - reduce size */
       .absolute.w-32, .absolute.w-48, .absolute.w-64 {
         width: 4rem !important;
         height: 4rem !important;
       }
       
-      /* "2+ Years Experience" card - REDUCE SIZE ONLY */
       .absolute.-bottom-6.-right-6 {
         padding: 1rem !important;
       }
@@ -354,13 +377,11 @@
         font-size: 0.75rem !important;
       }
       
-      /* Social media buttons - REDUCE SIZE */
       .w-12.h-12 {
         width: 2.5rem !important;
         height: 2.5rem !important;
       }
       
-      /* Hide desktop menu items on mobile */
       nav ul {
         display: none;
       }
@@ -378,7 +399,6 @@
         font-size: 1.5rem !important;
       }
       
-      /* Even smaller for very small screens */
       .absolute.-bottom-6.-right-6 {
         padding: 0.75rem !important;
       }
@@ -400,7 +420,6 @@
 </head>
 <body class="bg-gradient-to-br from-purple-100 via-blue-50 to-pink-100 text-gray-800 font-sans antialiased overflow-x-hidden">
 
-  <!-- Navbar -->
   <nav class="fixed top-0 left-0 w-full bg-white/20 backdrop-blur-xl shadow-lg z-50 border-b border-white/30">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <a href="index.html" class="text-2xl font-bold gradient-text">YA</a>
@@ -423,7 +442,6 @@
     </div>
   </nav>
 
-  <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
     <ul>
       <li><a href="index.html" class="text-gray-700 hover:text-purple-600 transition font-medium">Home</a></li>
@@ -433,16 +451,12 @@
     </ul>
   </div>
 
-  <!-- Hero Section -->
   <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
-    <!-- Enhanced Background -->
     <div class="absolute inset-0 overflow-hidden">
-      <!-- Multiple gradient orbs with different animations -->
       <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-purple-400/20 via-pink-400/15 to-transparent rounded-full blur-3xl animate-float"></div>
       <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-blue-400/20 via-cyan-400/15 to-transparent rounded-full blur-3xl" style="animation: floatUp 8s ease-in-out infinite; animation-delay: 1s;"></div>
       <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-300/10 to-blue-300/10 rounded-full blur-3xl" style="animation: pulse 6s ease-in-out infinite;"></div>
       
-      <!-- Floating particles -->
       <div class="absolute top-20 left-1/3 w-3 h-3 bg-purple-400/40 rounded-full" style="animation: floatUp 5s ease-in-out infinite;"></div>
       <div class="absolute bottom-32 right-1/3 w-2 h-2 bg-blue-400/40 rounded-full" style="animation: floatUp 6s ease-in-out infinite; animation-delay: 1s;"></div>
       <div class="absolute top-1/3 right-1/4 w-2 h-2 bg-pink-400/40 rounded-full" style="animation: floatUp 7s ease-in-out infinite; animation-delay: 2s;"></div>
@@ -450,20 +464,17 @@
 
     <div class="max-w-7xl mx-auto px-6 z-10  mb-40  relative">
       <div class="text-center animate-fade-in-up">
-        <!-- Enhanced Badge -->
         <div class="inline-flex items-center gap-3 mb-10 px-6 py-3 rounded-full bg-gradient-to-r from-white/50 to-white/30 backdrop-blur-xl border border-white/60 shadow-lg hover:shadow-xl transition-all duration-300">
           <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
           <span class="text-xs font-semibold text-gray-700 tracking-[0.2em] uppercase">Portfolio • About</span>
           <div class="w-2 h-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
         </div>
         
-        <!-- Impressive Title -->
         <h1 class="text-6xl md:text-8xl mb-8 tracking-tight leading-none">
           <span class="text-gray-800 title-accent" style="font-weight: 200;">About </span>
           <span class="gradient-text" style="font-weight: 300; animation: glow 3s ease-in-out infinite; letter-spacing: -0.02em;">Me</span>
         </h1>
         
-        <!-- Enhanced Description with decorative elements -->
         <div class="relative inline-block">
           <div class="absolute -left-8 top-1/2 transform -translate-y-1/2 w-6 h-0.5 bg-gradient-to-r from-transparent to-purple-400"></div>
           <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed px-8">
@@ -472,7 +483,6 @@
           <div class="absolute -right-8 top-1/2 transform -translate-y-1/2 w-6 h-0.5 bg-gradient-to-l from-transparent to-blue-400"></div>
         </div>
         
-        <!-- Decorative dots -->
         <div class="flex items-center justify-center gap-3 mt-10">
           <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
           <div class="w-12 h-0.5 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400"></div>
@@ -480,7 +490,6 @@
         </div>
       </div>
 
-      <!-- Profile Card -->
       <div class="glass-card rounded-3xl p-12 shadow-2xl mb-16 mt-40 animate-fade-in">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div class="relative">
@@ -526,7 +535,6 @@ Digital Developer
         </div>
       </div>
 
-      <!-- Skills Section - Modern Circular Design -->
       <div class="mb-20 animate-slide-in" style="animation-delay: 0.4s;">
         <div class="text-center mb-16">
           <div class="futuristic-line w-24 mx-auto mb-6"></div>
@@ -534,10 +542,8 @@ Digital Developer
           <p class="text-gray-600 text-lg">Technologies I master</p>
         </div>
         
-        <!-- Circular Grid Layout -->
         <div class="max-w-6xl mx-auto">
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            <!-- HTML5 -->
             <div class="skill-orb glass-card rounded-3xl p-8 text-center">
               <div class="relative w-32 h-32 mx-auto mb-6">
                 <svg class="transform -rotate-90 w-32 h-32">
@@ -560,7 +566,6 @@ Digital Developer
               <p class="text-sm text-gray-600">Expert</p>
             </div>
 
-            <!-- CSS3 -->
             <div class="skill-orb glass-card rounded-3xl p-8 text-center">
               <div class="relative w-32 h-32 mx-auto mb-6">
                 <svg class="transform -rotate-90 w-32 h-32">
@@ -583,7 +588,6 @@ Digital Developer
               <p class="text-sm text-gray-600">Expert</p>
             </div>
 
-            <!-- JavaScript -->
             <div class="skill-orb glass-card rounded-3xl p-8 text-center">
               <div class="relative w-32 h-32 mx-auto mb-6">
                 <svg class="transform -rotate-90 w-32 h-32">
@@ -606,7 +610,6 @@ Digital Developer
               <p class="text-sm text-gray-600">Advanced</p>
             </div>
 
-            <!-- React -->
             <div class="skill-orb glass-card rounded-3xl p-8 text-center">
               <div class="relative w-32 h-32 mx-auto mb-6">
                 <svg class="transform -rotate-90 w-32 h-32">
@@ -629,7 +632,6 @@ Digital Developer
               <p class="text-sm text-gray-600">Advanced</p>
             </div>
 
-            <!-- Laravel -->
             <div class="skill-orb glass-card rounded-3xl p-8 text-center">
               <div class="relative w-32 h-32 mx-auto mb-6">
                 <svg class="transform -rotate-90 w-32 h-32">
@@ -652,7 +654,6 @@ Digital Developer
               <p class="text-sm text-gray-600">Advanced</p>
             </div>
 
-            <!-- PHP -->
             <div class="skill-orb glass-card rounded-3xl p-8 text-center">
               <div class="relative w-32 h-32 mx-auto mb-6">
                 <svg class="transform -rotate-90 w-32 h-32">
@@ -675,7 +676,6 @@ Digital Developer
               <p class="text-sm text-gray-600">Advanced</p>
             </div>
 
-            <!-- WordPress -->
             <div class="skill-orb glass-card rounded-3xl p-8 text-center">
               <div class="relative w-32 h-32 mx-auto mb-6">
                 <svg class="transform -rotate-90 w-32 h-32">
@@ -698,7 +698,6 @@ Digital Developer
               <p class="text-sm text-gray-600">Advanced</p>
             </div>
 
-            <!-- Git -->
             <div class="skill-orb glass-card rounded-3xl p-8 text-center">
               <div class="relative w-32 h-32 mx-auto mb-6">
                 <svg class="transform -rotate-90 w-32 h-32">
@@ -724,9 +723,7 @@ Digital Developer
         </div>
       </div>
 
-      <!-- Education & Experience Timeline -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 animate-slide-in" style="animation-delay: 0.4s;">
-        <!-- Education -->
         <div class="glass-card rounded-3xl p-10 shadow-2xl">
           <h2 class="text-3xl font-black mb-8 gradient-text flex items-center gap-3">
             <i class="fas fa-graduation-cap"></i>
@@ -760,7 +757,6 @@ Digital Developer
           </div>
         </div>
 
-        <!-- Experience -->
         <div class="glass-card rounded-3xl p-10 shadow-2xl">
           <h2 class="text-3xl font-black mb-8 gradient-text flex items-center gap-3">
             <i class="fas fa-briefcase"></i>
@@ -794,7 +790,6 @@ Digital Developer
         </div>
       </div>
 
-      <!-- Interests & Values -->
       <div class="glass-card rounded-3xl p-12 shadow-2xl animate-scale-in" style="animation-delay: 0.6s;">
         <h2 class="text-4xl font-black text-center mb-12 gradient-text">My Values & Interests</h2>
         
@@ -863,12 +858,10 @@ Digital Developer
   </footer>
 
   <script>
-    // Dark Mode Toggle - Default to Light
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
     const themeIcon = themeToggle.querySelector('i');
     
-    // Check for saved theme preference or default to light mode
     const currentTheme = localStorage.getItem('theme') || 'light';
     if (currentTheme === 'dark') {
       body.classList.add('dark-mode');
@@ -894,7 +887,6 @@ Digital Developer
       }
     });
 
-    // Animate circular progress rings on scroll
     const progressRings = document.querySelectorAll('.progress-ring');
     const ringObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -909,7 +901,6 @@ Digital Developer
 
     progressRings.forEach(ring => ringObserver.observe(ring));
 
-    // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -920,7 +911,6 @@ Digital Developer
       });
     });
 
-    // Burger Menu Toggle
     const burgerMenu = document.getElementById('burgerMenu');
     const mobileMenu = document.getElementById('mobileMenu');
     
@@ -929,7 +919,6 @@ Digital Developer
       mobileMenu.classList.toggle('active');
     });
     
-    // Close mobile menu when clicking on a link
     const mobileMenuLinks = mobileMenu.querySelectorAll('a');
     mobileMenuLinks.forEach(link => {
       link.addEventListener('click', function() {
